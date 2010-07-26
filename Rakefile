@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{Improves web typography like Django's Typogrify}
     gem.description = %Q{Improve web typography using various text filters. This gem prevents widows and applies markup to ampersans, consecutive capitals and initial quotes.}
     gem.email = "arjan@arjanvandergaag.nl"
-    gem.homepage = "http://github.com/avdgaag/typogrify"
+    gem.homepage = "http://avdgaag.github.com/typogrify"
     gem.authors = ["Arjan van der Gaag"]
     gem.add_development_dependency "yard", ">= 0"
     gem.add_dependency "rubypants", ">= 0"
