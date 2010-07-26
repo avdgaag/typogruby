@@ -4,7 +4,7 @@ Helps you improve your web typograpbhy with some standard text filters.
 
 This project is based on Django's Typogrify, so the best introduction to read would be [Jeff Croft's][1].
 
-I created this gem to easily share these text filters in some tiny Ruby projects, including a TextMate bundle. For production code I recommend checking out the originals first.
+I created this gem to easily share these text filters in some tiny Ruby projects, including [a TextMate bundle][5]. For production code I recommend checking out the originals first.
 
 ## General Usage
 
@@ -23,6 +23,8 @@ Or, you can include the library in a helper or something:
     include Typogruby
     improve('Hello, world!')
 
+See the [full API documentation][4] for more information. You could also use [this Textmate Bundle][5].
+
 ## References
 
 * Based on [typography-helper][2]
@@ -32,6 +34,8 @@ Or, you can include the library in a helper or something:
 [1]: http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/
 [2]: http://github.com/hunter/typography-helper
 [3]: http://code.google.com/p/typogrify
+[4]: http://avdgaag.github.com/typogruby
+[5]: http://github.com/avdgaag/Typography-tmbundle
 
 ## Note on Patches/Pull Requests
 
