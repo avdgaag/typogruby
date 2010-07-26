@@ -1,0 +1,1050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: Typogrify</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo; 
+    
+    
+    <span class="title">Typogrify</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Typogrify
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1"><a href="" title="Typogrify (module)">Typogrify</a></dd>
+      
+    
+  
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><a href="" title="Typogrify (module)">Typogrify</a></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/typogrify.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A collection of simple helpers for improving web typograhy. Based on
+TypographyHelper by Luke Hartman and Typogrify.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="http://github.com/hunter/typography-helper" target="_parent" title="http://github.com/hunter/typography-helper">http://github.com/hunter/typography-helper</a></li>
+    
+      <li><a href="http://code.google.com/p/typogrify" target="_parent" title="http://code.google.com/p/typogrify">http://code.google.com/p/typogrify</a></li>
+    
+  </ul>
+<h3>Author:</h3>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+Arjan van der Gaag &lt;arjan.vandergaag@gmail.com&gt;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#amp-instance_method" title="#amp (instance method)">- (String) <strong>amp</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+converts a &amp; surrounded by optional whitespace or a non-breaking space
+to the HTML entity and surrounds it in a span with a styled class.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#caps-instance_method" title="#caps (instance method)">- (String) <strong>caps</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+surrounds two or more consecutive captial letters, perhaps with
+interspersed digits and periods in a span with a styled class.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#improve-instance_method" title="#improve (instance method)">- (String) <strong>improve</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+main function to do all the functions from the method.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initial_quotes-instance_method" title="#initial_quotes (instance method)">- (String) <strong>initial_quotes</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+encloses initial single or double quote, or their entities (optionally
+preceeded by a block element and perhaps an inline element) with a span
+that can be styled.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#smartypants-instance_method" title="#smartypants (instance method)">- (String) <strong>smartypants</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Applies smartypants to a given piece of text.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#version-instance_method" title="#version (instance method)">- (String) <strong>version</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Get the current gem version number.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#widont-instance_method" title="#widont (instance method)">- (String) <strong>widont</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+replaces space(s) before the last word (or tag before the last word) before
+an optional closing element (<tt>a</tt>, <tt>em</tt>, <tt>span</tt>,
+strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
+<tt>dt</tt>, <tt>dd</tt>) or the end of the string.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="amp-instance_method">
+  
+    - (<tt>String</tt>) <strong>amp</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+converts a &amp; surrounded by optional whitespace or a non-breaking space
+to the HTML entity and surrounds it in a span with a styled class
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp; two'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
+<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp;amp; two'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
+<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp;#38; two'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
+<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One&amp;nbsp;&amp;amp;&amp;nbsp;two'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'One&amp;nbsp;&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;&amp;nbsp;two'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+It won&#8217;t mess up &amp; that are already wrapped, in entities or URLs
+</p>
+</div></h4>
+      <pre class="example code">
+<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
+<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'&amp;ldquo;this&amp;rdquo; &amp; &lt;a href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&amp;ldquo;this&amp;rdquo; &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; &lt;a href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+It should ignore standalone amps that are in attributes
+</p>
+</div></h4>
+      <pre class="example code"><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'&lt;link href=&quot;xyz.html&quot; title=&quot;One &amp; Two&quot;&gt;xyz&lt;/link&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;link href=&quot;xyz.html&quot; title=&quot;One &amp; Two&quot;&gt;xyz&lt;/link&gt;'</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with ampersands wrapped
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match</span>
+  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(code|pre).+?&lt;\/\1&gt;|(\s|&amp;nbsp;)&amp;(?:amp;|#38;)?(\s|&amp;nbsp;)/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
+  <span class='$1 nth_ref id'>$1</span> <span class='question op'>?</span> <span class='str identifier id'>str</span> <span class='colon op'>:</span> <span class='$2 nth_ref id'>$2</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;'</span> <span class='plus op'>+</span> <span class='$3 nth_ref id'>$3</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/(\w+)=&quot;(.*?)&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;\/span&gt;(.*?)&quot;/</span><span class='comma token'>,</span> <span class='string val'>'\1=&quot;\2&amp;amp;\3&quot;'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="caps-instance_method">
+  
+    - (<tt>String</tt>) <strong>caps</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+surrounds two or more consecutive captial letters, perhaps with
+interspersed digits and periods in a span with a styled class
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;A message from KU&quot;</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'A message from &lt;span class=&quot;caps&quot;&gt;KU&lt;/span&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Allows digits
+</p>
+</div></h4>
+      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;A message from 2KU2 with digits&quot;</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'A message from &lt;span class=&quot;caps&quot;&gt;2KU2&lt;/span&gt; with digits'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+All caps with with apostrophes in them shouldn&#8217;t break. Only handles
+dump apostrophes though.
+</p>
+</div></h4>
+      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;JIMMY'S&quot;</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;span class=&quot;caps&quot;&gt;JIMMY\\'S&lt;/span&gt;'</span>
+<span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;&lt;i&gt;D.O.T.&lt;/i&gt;HE34T&lt;b&gt;RFID&lt;/b&gt;&quot;</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;i&gt;&lt;span class=&quot;caps&quot;&gt;D.O.T.&lt;/span&gt;&lt;/i&gt;&lt;span class=&quot;caps&quot;&gt;HE34T&lt;/span&gt;&lt;b&gt;&lt;span class=&quot;caps&quot;&gt;RFID&lt;/span&gt;&lt;/b&gt;'</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with caps wrapped
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 134</span>
+
+<span class='def def kw'>def</span> <span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match</span>
+  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(code|pre).+?&lt;\/\1&gt;|(\s|&amp;nbsp;|^|'|&quot;|&gt;)([A-Z\d][A-Z\d\.']{1,})(?!\w)/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
+  <span class='$1 nth_ref id'>$1</span> <span class='question op'>?</span> <span class='str identifier id'>str</span> <span class='colon op'>:</span> <span class='$2 nth_ref id'>$2</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;caps&quot;&gt;'</span> <span class='plus op'>+</span> <span class='$3 nth_ref id'>$3</span> <span class='plus op'>+</span> <span class='string val'>'&lt;/span&gt;'</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="improve-instance_method">
+  
+    - (<tt>String</tt>) <strong>improve</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+main function to do all the functions from the method
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with all filters applied
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 168</span>
+
+<span class='def def kw'>def</span> <span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="initial_quotes-instance_method">
+  
+    - (<tt>String</tt>) <strong>initial_quotes</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+encloses initial single or double quote, or their entities (optionally
+preceeded by a block element and perhaps an inline element) with a span
+that can be styled
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&quot;With primes&quot;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;span class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With primes&quot;'</span>
+<span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>&quot;'With single primes'&quot;</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;span class=&quot;quo&quot;&gt;\\'&lt;/span&gt;With single primes\\''</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+With primes and links
+</p>
+</div></h4>
+      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&lt;a href=&quot;#&quot;&gt;&quot;With primes and a link&quot;&lt;/a&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;a href=&quot;#&quot;&gt;&lt;span class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With primes and a link&quot;&lt;/a&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+with Smartypants-quotes
+</p>
+</div></h4>
+      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&amp;#8220;With smartypanted quotes&amp;#8221;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;span class=&quot;dquo&quot;&gt;&amp;#8220;&lt;/span&gt;With smartypanted quotes&amp;#8221;'</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with initial quotes wrapped
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 160</span>
+
+<span class='def def kw'>def</span> <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='comment val'># $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote</span>
+  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/((?:&lt;(?:h[1-6]|p|li|dt|dd)[^&gt;]*&gt;|^)\s*(?:&lt;(?:a|em|strong|span)[^&gt;]*&gt;)?)('|&amp;#8216;|(&quot;|&amp;#8220;))/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='$1 nth_ref id'>$1</span> <span class='plus op'>+</span> <span class='dstring node'>&quot;&lt;span class=\&quot;#{'d' if $3}quo\&quot;&gt;#{$2}&lt;/span&gt;&quot;</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="smartypants-instance_method">
+  
+    - (<tt>String</tt>) <strong>smartypants</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Applies smartypants to a given piece of text
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='string val'>'The &quot;Green&quot; man'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'The &amp;#8220;Green&amp;#8221; man'</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with smartypants applied
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 25</span>
+
+<span class='def def kw'>def</span> <span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='colon3 op'>::</span><span class='RubyPants constant id'>RubyPants</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="version-instance_method">
+  
+    - (<tt>String</tt>) <strong>version</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Get the current gem version number
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 13</span>
+
+<span class='def def kw'>def</span> <span class='version identifier id'>version</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='dstring node'>%w{.. VERSION}</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="widont-instance_method">
+  
+    - (<tt>String</tt>) <strong>widont</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+replaces space(s) before the last word (or tag before the last word) before
+an optional closing element (<tt>a</tt>, <tt>em</tt>, <tt>span</tt>,
+strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
+<tt>dt</tt>, <tt>dd</tt>) or the end of the string
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='gt op'>&gt;</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'A very simple test'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'A very simple&amp;nbsp;test'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Single word items shouldn&#8217;t be changed
+</p>
+</div></h4>
+      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'Test'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; 'Test'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>' Test'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; ' Test'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;ul&gt;&lt;li&gt; Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;ul&gt;&lt;li&gt; Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Nested tags
+</p>
+</div></h4>
+      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;p&gt;In a couple of paragraphs&lt;/p&gt;&lt;p&gt;paragraph two&lt;/p&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;p&gt;In a couple of&amp;nbsp;paragraphs&lt;/p&gt;&lt;p&gt;paragraph&amp;nbsp;two&lt;/p&gt;'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside a heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside a&amp;nbsp;heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link&lt;/a&gt; followed by other text&lt;/h1&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link&lt;/a&gt; followed by other&amp;nbsp;text&lt;/h1&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Empty HTMLs shouldn&#8217;t error
+</p>
+</div></h4>
+      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;'</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Excluded tags
+</p>
+</div></h4>
+      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;div&gt;Divs get no love!&lt;/div&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;div&gt;Divs get no love!&lt;/div&gt;'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;pre&gt;Neither do PREs&lt;/pre&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;pre&gt;Neither do PREs&lt;/pre&gt;'</span>
+<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;div&gt;&lt;p&gt;But divs with paragraphs do!&lt;/p&gt;&lt;/div&gt;'</span><span class='rparen token'>)</span>
+<span class='comment val'># =&gt; '&lt;div&gt;&lt;p&gt;But divs with paragraphs&amp;nbsp;do!&lt;/p&gt;&lt;/div&gt;'</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with non-breaking spaces inserted
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="http://mucur.name/posts/widon-t-and-smartypants-helpers-for-rails" target="_parent" title="http://mucur.name/posts/widon-t-and-smartypants-helpers-for-rails">http://mucur.name/posts/widon-t-and-smartypants-helpers-for-rails</a></li>
+    
+      <li><a href="http://shauninman.com/archive/2006/08/22/widont_wordpress_plugin" target="_parent" title="http://shauninman.com/archive/2006/08/22/widont_wordpress_plugin">http://shauninman.com/archive/2006/08/22/widont_wordpress_plugin</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogrify.rb', line 104</span>
+
+<span class='def def kw'>def</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>%r{
+    ((?:&lt;/?(?:a|em|span|strong|i|b)[^&gt;]*&gt;)|[^&lt;&gt;\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
+    \s+                                             # the space to replace
+    ([^&lt;&gt;\s]+                                       # must be flollowed by non-tag non-space characters
+    \s*                                             # optional white space!
+    (&lt;/(a|em|span|strong|i|b)&gt;\s*)*                 # optional closing inline tags with optional white space after each
+    ((&lt;/(p|h[1-6]|li|dt|dd)&gt;)|$))                   # end with a closing p, h1-6, li or the end of the string
+  }</span><span class='x identifier id'>x</span><span class='comma token'>,</span> <span class='string val'>'\1&amp;nbsp;\2'</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Jul 26 13:37:49 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.8 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
