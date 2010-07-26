@@ -167,7 +167,7 @@ module Typogruby
   # @return [String] input text with initial quotes wrapped
   def initial_quotes(text)
     # $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote
-    text.gsub(/((?:<(?:h[1-6]|p|li|dt|dd)[^>]*>|^)\s*(?:<(?:a|em|strong|span)[^>]*>)?)('|&#8216;|("|&#8220;))/) {$1 + "<span class=\"#{'d' if $3}quo\">#{$2}</span>"}
+    text.gsub(/((?:<(?:h[1-6]|p|li|dt|dd)[^>]*>|^)\s*(?:<(?:a|em|strong|span)[^>]*>)?)('|&#8216;|&lsquo;|("|&#8220;|&ldquo;))/) {$1 + "<span class=\"#{'d' if $3}quo\">#{$2}</span>"}
   end
 
   # main function to do all the functions from the method

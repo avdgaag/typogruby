@@ -39,6 +39,7 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<span class="quo">\'</span>With single primes\'', initial_quotes("'With single primes'")
     assert_equal '<a href="#"><span class="dquo">"</span>With primes and a link"</a>', initial_quotes('<a href="#">"With primes and a link"</a>')
     assert_equal '<span class="dquo">&#8220;</span>With smartypanted quotes&#8221;', initial_quotes('&#8220;With smartypanted quotes&#8221;')
+    assert_equal '<span class="quo">&lsquo;</span>With manual quotes&rsquo;', initial_quotes('&lsquo;With manual quotes&rsquo;')
   end
 
   def test_should_apply_smartypants
