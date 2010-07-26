@@ -133,8 +133,16 @@ module Typogruby
   # @return [String] input text with caps wrapped
   def caps(text)
     # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match
-    text.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/) {|str|
-    $1 ? str : $2 + '<span class="caps">' + $3 + '</span>' }
+    text.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
+      excluded, before, caps = $1, $2, $3
+      if excluded
+        str
+      elsif $3 =~ /^\d+$/
+        before + caps
+      else
+        before + '<span class="caps">' + caps + '</span>'
+      end
+    end
   end
 
   # encloses initial single or double quote, or their entities

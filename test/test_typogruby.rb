@@ -23,6 +23,7 @@ class TestTypogruby < Test::Unit::TestCase
   end
 
   def test_should_ignore_special_case_caps
+    assert_equal 'It should ignore just numbers like 1234', caps('It should ignore just numbers like 1234')
     assert_equal '<pre>CAPS</pre> more <span class="caps">CAPS</span>', caps("<pre>CAPS</pre> more CAPS")
     assert_equal 'A message from <span class="caps">2KU2</span> with digits', caps("A message from 2KU2 with digits")
     assert_equal 'Dotted caps followed by spaces should never include them in the wrap <span class="caps">D.O.T.</span>   like so.', caps("Dotted caps followed by spaces should never include them in the wrap D.O.T.   like so.")
