@@ -6,7 +6,7 @@ require 'rubypants'
 # @see http://github.com/hunter/typography-helper
 # @see http://code.google.com/p/typogrify
 # @author Arjan van der Gaag <arjan.vandergaag@gmail.com>
-module Typogrify
+module Typogruby
 
   # Get the current gem version number
   # @return [String]

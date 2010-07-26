@@ -3,8 +3,8 @@ require 'test/unit'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'typogrify'
+require 'typogruby'
 
 class Test::Unit::TestCase
-  include Typogrify
+  include Typogruby
 end

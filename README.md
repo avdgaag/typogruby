@@ -1,4 +1,4 @@
-# typogrify
+# typogruby
 
 Helps you improve your web typograpbhy with some standard text filters.
 
@@ -10,17 +10,17 @@ I created this gem to easily share these text filters in some tiny Ruby projects
 
 First, install the Ruby gem:
 
-    $ gem install typogrify
+    $ gem install typogruby
 
 Then require the library to get started:
 
-    require 'typogrify'
-    Typogrify.improve('Hello, world!')
+    require 'typogruby'
+    Typogruby.improve('Hello, world!')
 
 Or, you can include the library in a helper or something:
 
-    require 'typogrify'
-    include Typogrify
+    require 'typogruby'
+    include Typogruby
     improve('Hello, world!')
 
 ## References

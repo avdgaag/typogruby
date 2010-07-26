@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestTypogrify < Test::Unit::TestCase
+class TestTypogruby < Test::Unit::TestCase
 
   def test_should_replace_amps
     assert_equal 'One <span class="amp">&amp;</span> two', amp('One & two')
