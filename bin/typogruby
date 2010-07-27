@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby -rubygems
+require 'typogruby'
+require 'optparse'
+
+operations = [:smartypants, :initial_quotes, :amp, :widont, :caps]
+explicit_on = []
+explicit_off = []
+
+OptionParser.new do |options|
+  options.banner = <<-EOS
+Improves web typography with text filters.
+
+By default all filters are applied. You can disable partical filters using
+the --no switch, or run only specified filters.
+
+Examples:
+
+  typogruby FILE              Runs all filters
+  typogruby --no-widows FILE  Runs all filters except for widows
+  typogruby -w FILE           Runs only the filter for widows
+  typogruby --widows FILE     Runs only the filter for widows
+
+Usage: typogruby [options] filename [filename, ...]
+EOS
+
+  options.separator ""
+  options.separator "Available options:"
+
+  options.on '-s', '--[no-]smartypants', 'Apply smartypants' do |v|
+    (v ? explicit_on : explicit_off) << :smartypants
+  end
+
+  options.on '-q', '--[no-]quotes', 'Wrap initial quotes' do |v|
+    (v ? explicit_on : explicit_off) << :initial_quotes
+  end
+
+  options.on '-a', '--[no-]amps', 'Wrap ampersands' do |v|
+    (v ? explicit_on : explicit_off) << :amp
+  end
+
+  options.on '-w', '--[no-]widows', 'Prevent widows' do |v|
+    (v ? explicit_on : explicit_off) << :widont
+  end
+
+  options.on '-c', '--[no-]caps', 'Wrap consecutive capitals' do |v|
+    (v ? explicit_on : explicit_off) << :caps
+  end
+
+  options.on_tail '-h', '--help', 'Show this message' do
+    $stderr.print options
+    exit
+  end
+
+  options.on_tail '-v', '--version', 'Display version information' do
+    $stderr.print Typogruby.version
+    exit
+  end
+  options.parse!
+end
+
+operations_todo = if explicit_off.any? && explicit_on.empty?
+  operations - explicit_off
+elsif explicit_off.empty? && explicit_on.any?
+  explicit_on
+else
+  operations
+end
+
+unless ARGV.any?
+  $stderr.puts 'No file specified'
+  exit 1
+end
+
+output = ARGV.inject('') do |output, filename|
+  begin
+    output + operations_todo.inject(File.read(filename)) { |t, o| Typogruby.send(o, t) }
+  rescue
+    $stderr.print "Error processing '#{filename}'"
+    output
+  end
+end
+
+$stdout.print output
