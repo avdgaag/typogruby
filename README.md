@@ -25,6 +25,14 @@ Or, you can include the library in a helper or something:
 
 See the [full API documentation][4] for more information. You could also use [this Textmate Bundle][5].
 
+## From the command line
+
+You can also use typogruby directly from the command line:
+
+    typogruby MY_FILE
+
+This will output the contents of your file with all filters applied. Use `typogruby -h` for more information and options.
+
 ## References
 
 * Based on [typography-helper][2]
@@ -36,6 +44,23 @@ See the [full API documentation][4] for more information. You could also use [th
 [3]: http://code.google.com/p/typogrify
 [4]: http://avdgaag.github.com/typogruby
 [5]: http://github.com/avdgaag/Typography-tmbundle
+
+## Changelog
+
+### 1.0.3
+
+* Bugfix: caps also ignores unequal but same excepted tags
+* Feature: added command-line program
+* Improved documentation
+
+### 1.0.2
+
+* Bugfix: initial_quotes also wraps named HTML entities
+* Bugfix: caps no longer wraps consecutive numbers
+
+### 1.0
+
+* First release
 
 ## Note on Patches/Pull Requests
 
