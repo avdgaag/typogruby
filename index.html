@@ -47,7 +47,7 @@
 
 <p>This project is based on Django's Typogrify, so the best introduction to read would be <a href="http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/">Jeff Croft's</a>.</p>
 
-<p>I created this gem to easily share these text filters in some tiny Ruby projects, including a TextMate bundle. For production code I recommend checking out the originals first.</p>
+<p>I created this gem to easily share these text filters in some tiny Ruby projects, including <a href="http://github.com/avdgaag/Typography-tmbundle">a TextMate bundle</a>. For production code I recommend checking out the originals first.</p>
 
 <h2>General Usage</h2>
 
@@ -69,12 +69,46 @@
 <span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='string val'>'Hello, world!'</span><span class='rparen token'>)</span>
 </pre>
 
+<p>See the <a href="http://avdgaag.github.com/typogruby">full API documentation</a> for more information. You could also use <a href="http://github.com/avdgaag/Typography-tmbundle">this Textmate Bundle</a>.</p>
+
+<h2>From the command line</h2>
+
+<p>You can also use typogruby directly from the command line:</p>
+
+<pre class="code"><span class='typogruby identifier id'>typogruby</span> <span class='MY_FILE constant id'>MY_FILE</span>
+</pre>
+
+<p>This will output the contents of your file with all filters applied. Use <code>typogruby -h</code> for more information and options.</p>
+
 <h2>References</h2>
 
 <ul>
 <li>Based on <a href="http://github.com/hunter/typography-helper">typography-helper</a></li>
 <li>...and on <a href="http://code.google.com/p/typogrify">Typogrify</a></li>
 <li><a href="http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/">Description of typogrify</a></li>
+</ul>
+
+<h2>Changelog</h2>
+
+<h3>1.0.3</h3>
+
+<ul>
+<li>Bugfix: caps also ignores unequal but same excepted tags</li>
+<li>Feature: added command-line program</li>
+<li>Improved documentation</li>
+</ul>
+
+<h3>1.0.2</h3>
+
+<ul>
+<li>Bugfix: initial_quotes also wraps named HTML entities</li>
+<li>Bugfix: caps no longer wraps consecutive numbers</li>
+</ul>
+
+<h3>1.0</h3>
+
+<ul>
+<li>First release</li>
 </ul>
 
 <h2>Note on Patches/Pull Requests</h2>
@@ -113,7 +147,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
     
     <div id="footer">
-  Generated on Mon Jul 26 13:59:55 2010 by 
+  Generated on Tue Jul 27 14:33:42 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.8 (ruby-1.8.7).
 </div>
