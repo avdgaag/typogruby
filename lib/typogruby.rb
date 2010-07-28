@@ -137,7 +137,7 @@ module Typogruby
       excluded, before, caps = $1, $2, $3
       if excluded
         str
-      elsif $3 =~ /^\d+$/
+      elsif $3 =~ /^[\d\.]+$/
         before + caps
       else
         before + '<span class="caps">' + caps + '</span>'

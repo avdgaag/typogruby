@@ -23,7 +23,7 @@ class TestTypogruby < Test::Unit::TestCase
   end
 
   def test_should_ignore_special_case_caps
-    assert_equal 'It should ignore just numbers like 1234', caps('It should ignore just numbers like 1234')
+    assert_equal 'It should ignore just numbers like 1234.', caps('It should ignore just numbers like 1234.')
     assert_equal '<pre>CAPS</pre> more <span class="caps">CAPS</span>', caps("<pre>CAPS</pre> more CAPS")
     assert_equal '<Pre>CAPS</PRE> with odd tag names <span class="caps">CAPS</span>', caps("<Pre>CAPS</PRE> with odd tag names CAPS")
     assert_equal 'A message from <span class="caps">2KU2</span> with digits', caps("A message from 2KU2 with digits")
