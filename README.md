@@ -47,6 +47,10 @@ This will output the contents of your file with all filters applied. Use `typogr
 
 ## Changelog
 
+### 1.0.4
+
+* Bugfix: no longer regard combination of digits and periods as caps.
+
 ### 1.0.3
 
 * Bugfix: caps also ignores unequal but same excepted tags
