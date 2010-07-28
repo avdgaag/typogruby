@@ -50,6 +50,7 @@ This will output the contents of your file with all filters applied. Use `typogr
 ### 1.0.4
 
 * Bugfix: no longer regard combination of digits and periods as caps.
+* Bugfix: do not add consecutive non-breaking spaces to prevent widows
 
 ### 1.0.3
 

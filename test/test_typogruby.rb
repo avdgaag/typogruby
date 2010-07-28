@@ -65,6 +65,10 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<h1><a href="#">In a link</a> followed by other&nbsp;text</h1>', widont('<h1><a href="#">In a link</a> followed by other text</h1>')
   end
 
+  def test_should_not_add_nbsp_before_another
+    assert_equal 'Sentence with one&nbsp;nbsp', widont('Sentence with one&nbsp;nbsp')
+  end
+
   def test_should_not_error_on_empty_html
     assert_equal '<h1><a href="#"></a></h1>', widont('<h1><a href="#"></a></h1>')
   end
