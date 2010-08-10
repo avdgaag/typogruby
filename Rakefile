@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require 'bundler'
 
 begin
   require 'jeweler'
@@ -10,9 +11,7 @@ begin
     gem.email = "arjan@arjanvandergaag.nl"
     gem.homepage = "http://avdgaag.github.com/typogruby"
     gem.authors = ["Arjan van der Gaag"]
-    gem.add_development_dependency "yard", ">= 0"
-    gem.add_dependency "rubypants", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_bundler_dependencies
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
