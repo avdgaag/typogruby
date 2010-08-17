@@ -405,19 +405,25 @@ input text with ampersands wrapped
       <pre class="lines">
 
 
-55
 56
 57
 58
-59</pre>
+59
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 56</span>
 
 <span class='def def kw'>def</span> <span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match</span>
-  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(code|pre).+?&lt;\/\1&gt;|(\s|&amp;nbsp;)&amp;(?:amp;|#38;)?(\s|&amp;nbsp;)/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
-  <span class='$1 nth_ref id'>$1</span> <span class='question op'>?</span> <span class='str identifier id'>str</span> <span class='colon op'>:</span> <span class='$2 nth_ref id'>$2</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;'</span> <span class='plus op'>+</span> <span class='$3 nth_ref id'>$3</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/(\w+)=&quot;(.*?)&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;\/span&gt;(.*?)&quot;/</span><span class='comma token'>,</span> <span class='string val'>'\1=&quot;\2&amp;amp;\3&quot;'</span><span class='rparen token'>)</span>
+  <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
+    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(code|pre).+?&lt;\/\1&gt;|(\s|&amp;nbsp;)&amp;(?:amp;|#38;)?(\s|&amp;nbsp;)/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
+      <span class='$1 nth_ref id'>$1</span> <span class='question op'>?</span> <span class='str identifier id'>str</span> <span class='colon op'>:</span> <span class='$2 nth_ref id'>$2</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;'</span> <span class='plus op'>+</span> <span class='$3 nth_ref id'>$3</span>
+    <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/(\w+)=&quot;(.*?)&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;\/span&gt;(.*?)&quot;/</span><span class='comma token'>,</span> <span class='string val'>'\1=&quot;\2&amp;amp;\3&quot;'</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -519,33 +525,37 @@ input text with caps wrapped
       <pre class="lines">
 
 
-134
-135
-136
-137
-138
-139
 140
 141
 142
 143
 144
 145
-146</pre>
+146
+147
+148
+149
+150
+151
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 140</span>
 
 <span class='def def kw'>def</span> <span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
-  <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match</span>
-  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(?i)(code|pre)(?-i).+?&lt;(?i)\/\1(?-i)&gt;|(\s|&amp;nbsp;|^|'|&quot;|&gt;)([A-Z\d][A-Z\d\.']{1,})(?!\w)/</span><span class='rparen token'>)</span>  <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
-    <span class='excluded identifier id'>excluded</span><span class='comma token'>,</span> <span class='before identifier id'>before</span><span class='comma token'>,</span> <span class='caps identifier id'>caps</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span><span class='comma token'>,</span> <span class='$2 nth_ref id'>$2</span><span class='comma token'>,</span> <span class='$3 nth_ref id'>$3</span>
-    <span class='if if kw'>if</span> <span class='excluded identifier id'>excluded</span>
-      <span class='str identifier id'>str</span>
-    <span class='elsif elsif kw'>elsif</span> <span class='$3 nth_ref id'>$3</span> <span class='match op'>=~</span> <span class='regexp val'>/^\d+$/</span>
-      <span class='before identifier id'>before</span> <span class='plus op'>+</span> <span class='caps identifier id'>caps</span>
-    <span class='else else kw'>else</span>
-      <span class='before identifier id'>before</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;caps&quot;&gt;'</span> <span class='plus op'>+</span> <span class='caps identifier id'>caps</span> <span class='plus op'>+</span> <span class='string val'>'&lt;/span&gt;'</span>
+  <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
+    <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match</span>
+    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(?i)(code|pre)(?-i).+?&lt;(?i)\/\1(?-i)&gt;|(\s|&amp;nbsp;|^|'|&quot;|&gt;)([A-Z\d][A-Z\d\.']{1,})(?!\w)/</span><span class='rparen token'>)</span>  <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
+      <span class='excluded identifier id'>excluded</span><span class='comma token'>,</span> <span class='before identifier id'>before</span><span class='comma token'>,</span> <span class='caps identifier id'>caps</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span><span class='comma token'>,</span> <span class='$2 nth_ref id'>$2</span><span class='comma token'>,</span> <span class='$3 nth_ref id'>$3</span>
+      <span class='if if kw'>if</span> <span class='excluded identifier id'>excluded</span>
+        <span class='str identifier id'>str</span>
+      <span class='elsif elsif kw'>elsif</span> <span class='$3 nth_ref id'>$3</span> <span class='match op'>=~</span> <span class='regexp val'>/^[\d\.]+$/</span>
+        <span class='before identifier id'>before</span> <span class='plus op'>+</span> <span class='caps identifier id'>caps</span>
+      <span class='else else kw'>else</span>
+        <span class='before identifier id'>before</span> <span class='plus op'>+</span> <span class='string val'>'&lt;span class=&quot;caps&quot;&gt;'</span> <span class='plus op'>+</span> <span class='caps identifier id'>caps</span> <span class='plus op'>+</span> <span class='string val'>'&lt;/span&gt;'</span>
+      <span class='end end kw'>end</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
@@ -619,12 +629,12 @@ input text with all filters applied
       <pre class="lines">
 
 
-176
-177
-178</pre>
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 186</span>
 
 <span class='def def kw'>def</span> <span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -729,17 +739,21 @@ input text with initial quotes wrapped
       <pre class="lines">
 
 
-168
-169
-170
-171</pre>
+176
+177
+178
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 176</span>
 
 <span class='def def kw'>def</span> <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote</span>
-  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/((?:&lt;(?:h[1-6]|p|li|dt|dd)[^&gt;]*&gt;|^)\s*(?:&lt;(?:a|em|strong|span)[^&gt;]*&gt;)?)('|&amp;#8216;|&amp;lsquo;|(&quot;|&amp;#8220;|&amp;ldquo;))/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='$1 nth_ref id'>$1</span> <span class='plus op'>+</span> <span class='dstring node'>&quot;&lt;span class=\&quot;#{'d' if $3}quo\&quot;&gt;#{$2}&lt;/span&gt;&quot;</span><span class='rbrace token'>}</span>
+  <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
+    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/((?:&lt;(?:h[1-6]|p|li|dt|dd)[^&gt;]*&gt;|^)\s*(?:&lt;(?:a|em|strong|span)[^&gt;]*&gt;)?)('|&amp;#8216;|&amp;lsquo;|(&quot;|&amp;#8220;|&amp;ldquo;))/</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='$1 nth_ref id'>$1</span> <span class='plus op'>+</span> <span class='dstring node'>&quot;&lt;span class=\&quot;#{'d' if $3}quo\&quot;&gt;#{$2}&lt;/span&gt;&quot;</span><span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -821,12 +835,12 @@ input text with smartypants applied
       <pre class="lines">
 
 
-25
 26
-27</pre>
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 26</span>
 
 <span class='def def kw'>def</span> <span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='colon3 op'>::</span><span class='RubyPants constant id'>RubyPants</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
@@ -874,12 +888,12 @@ Get the current gem version number
       <pre class="lines">
 
 
-13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 14</span>
 
 <span class='def def kw'>def</span> <span class='version identifier id'>version</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='dstring node'>%w{.. VERSION}</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -1022,29 +1036,33 @@ input text with non-breaking spaces inserted
       <pre class="lines">
 
 
-104
-105
-106
-107
 108
 109
 110
 111
 112
-113</pre>
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 108</span>
 
 <span class='def def kw'>def</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
-  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>%r{
-    ((?:&lt;/?(?:a|em|span|strong|i|b)[^&gt;]*&gt;)|[^&lt;&gt;\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
-    \s+                                             # the space to replace
-    ([^&lt;&gt;\s]+                                       # must be flollowed by non-tag non-space characters
-    \s*                                             # optional white space!
-    (&lt;/(a|em|span|strong|i|b)&gt;\s*)*                 # optional closing inline tags with optional white space after each
-    ((&lt;/(p|h[1-6]|li|dt|dd)&gt;)|$))                   # end with a closing p, h1-6, li or the end of the string
-  }</span><span class='x identifier id'>x</span><span class='comma token'>,</span> <span class='string val'>'\1&amp;nbsp;\2'</span><span class='rparen token'>)</span>
+  <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
+    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>%r{
+      ((?:&lt;/?(?:a|em|span|strong|i|b)[^&gt;]*&gt;)|[^&lt;&gt;\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
+      \s+                                             # the space to replace
+      (([^&lt;&gt;\s]+)                                     # must be flollowed by non-tag non-space characters
+      \s*                                             # optional white space!
+      (&lt;/(a|em|span|strong|i|b)&gt;\s*)*                 # optional closing inline tags with optional white space after each
+      ((&lt;/(p|h[1-6]|li|dt|dd)&gt;)|$))                   # end with a closing p, h1-6, li or the end of the string
+    }</span><span class='x identifier id'>x</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='match identifier id'>match</span><span class='bitor op'>|</span> <span class='$1 nth_ref id'>$1</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='match identifier id'>match</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='string val'>'&amp;nbsp;'</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='string val'>' '</span> <span class='colon op'>:</span> <span class='string val'>'&amp;nbsp;'</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='$2 nth_ref id'>$2</span> <span class='rbrace token'>}</span> <span class='comment val'># Make sure to not add another nbsp before one already there</span>
+  <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1057,7 +1075,7 @@ input text with non-breaking spaces inserted
 </div>
     
     <div id="footer">
-  Generated on Tue Jul 27 14:33:42 2010 by 
+  Generated on Tue Aug 17 15:54:42 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.8 (ruby-1.8.7).
 </div>
