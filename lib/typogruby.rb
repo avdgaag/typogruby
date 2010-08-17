@@ -1,4 +1,5 @@
 require 'rubypants'
+require 'digest/md5'
 
 # A collection of simple helpers for improving web
 # typograhy. Based on TypographyHelper by Luke Hartman and Typogrify.
@@ -54,8 +55,11 @@ module Typogruby
   # @return [String] input text with ampersands wrapped
   def amp(text)
     # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match
-    text.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;)&(?:amp;|#38;)?(\s|&nbsp;)/) {|str|
-    $1 ? str : $2 + '<span class="amp">&amp;</span>' + $3 }.gsub(/(\w+)="(.*?)<span class="amp">&amp;<\/span>(.*?)"/, '\1="\2&amp;\3"')
+    ignore_scripts(text) do |t|
+      t.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;)&(?:amp;|#38;)?(\s|&nbsp;)/) { |str|
+        $1 ? str : $2 + '<span class="amp">&amp;</span>' + $3
+      }.gsub(/(\w+)="(.*?)<span class="amp">&amp;<\/span>(.*?)"/, '\1="\2&amp;\3"')
+    end
   end
 
   # replaces space(s) before the last word (or tag before the last word)
@@ -102,14 +106,16 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with non-breaking spaces inserted
   def widont(text)
-    text.gsub(%r{
-      ((?:</?(?:a|em|span|strong|i|b)[^>]*>)|[^<>\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
-      \s+                                             # the space to replace
-      (([^<>\s]+)                                     # must be flollowed by non-tag non-space characters
-      \s*                                             # optional white space!
-      (</(a|em|span|strong|i|b)>\s*)*                 # optional closing inline tags with optional white space after each
-      ((</(p|h[1-6]|li|dt|dd)>)|$))                   # end with a closing p, h1-6, li or the end of the string
-    }x) { |match| $1 + (match.include?('&nbsp;') ? ' ' : '&nbsp;') + $2 } # Make sure to not add another nbsp before one already there
+    ignore_scripts(text) do |t|
+      t.gsub(%r{
+        ((?:</?(?:a|em|span|strong|i|b)[^>]*>)|[^<>\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
+        \s+                                             # the space to replace
+        (([^<>\s]+)                                     # must be flollowed by non-tag non-space characters
+        \s*                                             # optional white space!
+        (</(a|em|span|strong|i|b)>\s*)*                 # optional closing inline tags with optional white space after each
+        ((</(p|h[1-6]|li|dt|dd)>)|$))                   # end with a closing p, h1-6, li or the end of the string
+      }x) { |match| $1 + (match.include?('&nbsp;') ? ' ' : '&nbsp;') + $2 } # Make sure to not add another nbsp before one already there
+    end
   end
 
   # surrounds two or more consecutive captial letters, perhaps with interspersed digits and periods
@@ -132,15 +138,17 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with caps wrapped
   def caps(text)
-    # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match
-    text.gsub(/<(?i)(code|pre)(?-i).+?<(?i)\/\1(?-i)>|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
-      excluded, before, caps = $1, $2, $3
-      if excluded
-        str
-      elsif $3 =~ /^[\d\.]+$/
-        before + caps
-      else
-        before + '<span class="caps">' + caps + '</span>'
+    ignore_scripts(text) do |t|
+      # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match
+      t.gsub(/<(?i)(code|pre)(?-i).+?<(?i)\/\1(?-i)>|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
+        excluded, before, caps = $1, $2, $3
+        if excluded
+          str
+        elsif $3 =~ /^[\d\.]+$/
+          before + caps
+        else
+          before + '<span class="caps">' + caps + '</span>'
+        end
       end
     end
   end
@@ -167,7 +175,9 @@ module Typogruby
   # @return [String] input text with initial quotes wrapped
   def initial_quotes(text)
     # $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote
-    text.gsub(/((?:<(?:h[1-6]|p|li|dt|dd)[^>]*>|^)\s*(?:<(?:a|em|strong|span)[^>]*>)?)('|&#8216;|&lsquo;|("|&#8220;|&ldquo;))/) {$1 + "<span class=\"#{'d' if $3}quo\">#{$2}</span>"}
+    ignore_scripts(text) do |t|
+      t.gsub(/((?:<(?:h[1-6]|p|li|dt|dd)[^>]*>|^)\s*(?:<(?:a|em|strong|span)[^>]*>)?)('|&#8216;|&lsquo;|("|&#8220;|&ldquo;))/) {$1 + "<span class=\"#{'d' if $3}quo\">#{$2}</span>"}
+    end
   end
 
   # main function to do all the functions from the method
@@ -175,6 +185,27 @@ module Typogruby
   # @return [String] input text with all filters applied
   def improve(text)
     initial_quotes(caps(smartypants(widont(amp(text)))))
+  end
+
+private
+
+  # Hackish text filter that will make sure our text filters leave inline
+  # javascript alone without resorting to a full-blown HTML parser.
+  #
+  # The idea is simple: every text filter is applied as a block to this
+  # method. This will preprocess the text and replace any inline scripts
+  # with a MD5 hash of its entire contents. Then the filter is called,
+  # and then the hashes are replaced back with their original content.
+  def ignore_scripts(text)
+    @ignored_scripts = {}
+    modified_text = text.gsub(/<script[^>]*>.*?<\/script>/mi) do |script|
+      hash = Digest::MD5.hexdigest(script)
+      @ignored_scripts[hash] = script
+      hash
+    end
+    yield(modified_text).gsub(/#{@ignored_scripts.keys.join('|')}/) do |h|
+      @ignored_scripts.delete(h)
+    end
   end
 
   extend self

@@ -47,6 +47,14 @@ This will output the contents of your file with all filters applied. Use `typogr
 
 ## Changelog
 
+### 1.0.6
+
+* Bugfix: ignore inline javascript
+
+### 1.0.5
+
+* Manage gem dependencies using Bundler
+
 ### 1.0.4
 
 * Bugfix: no longer regard combination of digits and periods as caps.

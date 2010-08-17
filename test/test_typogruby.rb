@@ -12,6 +12,7 @@ class TestTypogruby < Test::Unit::TestCase
   def test_should_ignore_special_amps
     assert_equal 'One <span class="amp">&amp;</span> two', amp('One <span class="amp">&amp;</span> two')
     assert_equal '&ldquo;this&rdquo; <span class="amp">&amp;</span> <a href="/?that&amp;test">that</a>', amp('&ldquo;this&rdquo; & <a href="/?that&amp;test">that</a>')
+    assert_equal %Q{<script>\nvar x = "FOO & BAR";\n</script>"}, initial_quotes(%Q{<script>\nvar x = "FOO & BAR";\n</script>"})
   end
 
   def test_should_ignore_standalone_amps_in_attributes
@@ -28,6 +29,7 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<Pre>CAPS</PRE> with odd tag names <span class="caps">CAPS</span>', caps("<Pre>CAPS</PRE> with odd tag names CAPS")
     assert_equal 'A message from <span class="caps">2KU2</span> with digits', caps("A message from 2KU2 with digits")
     assert_equal 'Dotted caps followed by spaces should never include them in the wrap <span class="caps">D.O.T.</span>   like so.', caps("Dotted caps followed by spaces should never include them in the wrap D.O.T.   like so.")
+    assert_equal %Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"}, initial_quotes(%Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"})
   end
 
   def test_should_not_break_caps_with_apostrophes
@@ -41,6 +43,10 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<a href="#"><span class="dquo">"</span>With primes and a link"</a>', initial_quotes('<a href="#">"With primes and a link"</a>')
     assert_equal '<span class="dquo">&#8220;</span>With smartypanted quotes&#8221;', initial_quotes('&#8220;With smartypanted quotes&#8221;')
     assert_equal '<span class="quo">&lsquo;</span>With manual quotes&rsquo;', initial_quotes('&lsquo;With manual quotes&rsquo;')
+  end
+
+  def test_should_not_replace_quotes_in_scripts
+    assert_equal %Q{<script>\nvar x = "foo" +\n"bar";\n</script>"}, initial_quotes(%Q{<script>\nvar x = "foo" +\n"bar";\n</script>"})
   end
 
   def test_should_apply_smartypants
@@ -76,6 +82,7 @@ class TestTypogruby < Test::Unit::TestCase
   def test_should_ignore_widows_in_special_tags
     assert_equal '<div>Divs get no love!</div>', widont('<div>Divs get no love!</div>')
     assert_equal '<pre>Neither do PREs</pre>', widont('<pre>Neither do PREs</pre>')
+    assert_equal "<script>\nreturn window;\n</script>", widont("<script>\nreturn window;\n</script>")
     assert_equal '<div><p>But divs with paragraphs&nbsp;do!</p></div>', widont('<div><p>But divs with paragraphs do!</p></div>')
   end
 end
