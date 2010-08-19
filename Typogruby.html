@@ -84,6 +84,26 @@ TypographyHelper by Luke Hartman and Typogrify.
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'><p>
+Using all filters
+</p>
+</div></h4>
+      <pre class="example code"><span class='require identifier id'>require</span> <span class='string val'>'typogruby'</span>
+<span class='Typogruby constant id'>Typogruby</span><span class='dot token'>.</span><span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='string val'>'my text'</span><span class='rparen token'>)</span>
+</pre>
+    
+      <h4><div class='inline'><p>
+Using a single filter
+</p>
+</div></h4>
+      <pre class="example code"><span class='Typogruby constant id'>Typogruby</span><span class='dot token'>.</span><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'my text'</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+
   <h3>See Also:</h3>
   <ul class="see">
     
@@ -316,7 +336,7 @@ strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
   <div class="discussion">
     <p>
 converts a &amp; surrounded by optional whitespace or a non-breaking space
-to the HTML entity and surrounds it in a span with a styled class
+to the HTML entity and surrounds it in a span with a styled class.
 </p>
 
 
@@ -405,17 +425,17 @@ input text with ampersands wrapped
       <pre class="lines">
 
 
-56
-57
-58
-59
-60
-61
-62
-63</pre>
+63
+64
+65
+66
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 63</span>
 
 <span class='def def kw'>def</span> <span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match</span>
@@ -442,7 +462,7 @@ input text with ampersands wrapped
   <div class="discussion">
     <p>
 surrounds two or more consecutive captial letters, perhaps with
-interspersed digits and periods in a span with a styled class
+interspersed digits and periods in a span with a styled class.
 </p>
 
 
@@ -525,13 +545,6 @@ input text with caps wrapped
       <pre class="lines">
 
 
-140
-141
-142
-143
-144
-145
-146
 147
 148
 149
@@ -539,10 +552,17 @@ input text with caps wrapped
 151
 152
 153
-154</pre>
+154
+155
+156
+157
+158
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 147</span>
 
 <span class='def def kw'>def</span> <span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
@@ -575,7 +595,7 @@ input text with caps wrapped
 </p><div class="docstring">
   <div class="discussion">
     <p>
-main function to do all the functions from the method
+main function to do all the functions from the method.
 </p>
 
 
@@ -629,12 +649,12 @@ input text with all filters applied
       <pre class="lines">
 
 
-186
-187
-188</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 193</span>
 
 <span class='def def kw'>def</span> <span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -657,7 +677,7 @@ input text with all filters applied
     <p>
 encloses initial single or double quote, or their entities (optionally
 preceeded by a block element and perhaps an inline element) with a span
-that can be styled
+that can be styled.
 </p>
 
 
@@ -739,15 +759,15 @@ input text with initial quotes wrapped
       <pre class="lines">
 
 
-176
-177
-178
-179
-180
-181</pre>
+183
+184
+185
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 183</span>
 
 <span class='def def kw'>def</span> <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote</span>
@@ -835,12 +855,12 @@ input text with smartypants applied
       <pre class="lines">
 
 
-26
-27
-28</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 33</span>
 
 <span class='def def kw'>def</span> <span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='colon3 op'>::</span><span class='RubyPants constant id'>RubyPants</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
@@ -888,12 +908,12 @@ Get the current gem version number
       <pre class="lines">
 
 
-14
-15
-16</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 21</span>
 
 <span class='def def kw'>def</span> <span class='version identifier id'>version</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='dstring node'>%w{.. VERSION}</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -917,7 +937,7 @@ Get the current gem version number
 replaces space(s) before the last word (or tag before the last word) before
 an optional closing element (<tt>a</tt>, <tt>em</tt>, <tt>span</tt>,
 strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
-<tt>dt</tt>, <tt>dd</tt>) or the end of the string
+<tt>dt</tt>, <tt>dd</tt>) or the end of the string.
 </p>
 
 
@@ -1036,21 +1056,21 @@ input text with non-breaking spaces inserted
       <pre class="lines">
 
 
-108
-109
-110
-111
-112
-113
-114
 115
 116
 117
 118
-119</pre>
+119
+120
+121
+122
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 115</span>
 
 <span class='def def kw'>def</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
@@ -1075,7 +1095,7 @@ input text with non-breaking spaces inserted
 </div>
     
     <div id="footer">
-  Generated on Tue Aug 17 15:54:42 2010 by 
+  Generated on Thu Aug 19 11:43:31 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.8 (ruby-1.8.7).
 </div>
