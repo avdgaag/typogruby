@@ -1,4 +1,4 @@
-# typogruby
+# Typogruby
 
 Helps you improve your web typograpbhy with some standard text filters.
 
@@ -39,41 +39,9 @@ This will output the contents of your file with all filters applied. Use `typogr
 * ...and on [Typogrify][3]
 * [Description of typogrify][1]
 
-[1]: http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/
-[2]: http://github.com/hunter/typography-helper
-[3]: http://code.google.com/p/typogrify
-[4]: http://avdgaag.github.com/typogruby
-[5]: http://github.com/avdgaag/Typography-tmbundle
-
 ## Changelog
 
-### 1.0.6
-
-* Bugfix: ignore inline javascript
-
-### 1.0.5
-
-* Manage gem dependencies using Bundler
-
-### 1.0.4
-
-* Bugfix: no longer regard combination of digits and periods as caps.
-* Bugfix: do not add consecutive non-breaking spaces to prevent widows
-
-### 1.0.3
-
-* Bugfix: caps also ignores unequal but same excepted tags
-* Feature: added command-line program
-* Improved documentation
-
-### 1.0.2
-
-* Bugfix: initial_quotes also wraps named HTML entities
-* Bugfix: caps no longer wraps consecutive numbers
-
-### 1.0
-
-* First release
+See HISTORY.md for the complete changelog.
 
 ## Note on Patches/Pull Requests
 
@@ -85,25 +53,13 @@ This will output the contents of your file with all filters applied. Use `typogr
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-## License
+## Credits
 
-Copyright (c) 2010 Arjan van der Gaag
+By Arjan van der Gaag ([avdgaag @ github][6]) based on the hard work of lots of others. See LICENSE for license details (same as Ruby).
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[1]: http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/
+[2]: http://github.com/hunter/typography-helper
+[3]: http://code.google.com/p/typogrify
+[4]: http://avdgaag.github.com/typogruby
+[5]: http://github.com/avdgaag/Typography-tmbundle
+[6]: http://github.com/avdgaag

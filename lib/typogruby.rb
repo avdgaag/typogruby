@@ -4,6 +4,13 @@ require 'digest/md5'
 # A collection of simple helpers for improving web
 # typograhy. Based on TypographyHelper by Luke Hartman and Typogrify.
 #
+# @example Using all filters
+# require 'typogruby'
+# Typogruby.improve('my text')
+#
+# @example Using a single filter
+# Typogruby.initial_quotes('my text')
+#
 # @see http://github.com/hunter/typography-helper
 # @see http://code.google.com/p/typogrify
 # @author Arjan van der Gaag <arjan.vandergaag@gmail.com>
@@ -28,7 +35,7 @@ module Typogruby
   end
 
   # converts a & surrounded by optional whitespace or a non-breaking space
-  # to the HTML entity and surrounds it in a span with a styled class
+  # to the HTML entity and surrounds it in a span with a styled class.
   #
   # @example
   # amp('One & two')
@@ -65,7 +72,7 @@ module Typogruby
   # replaces space(s) before the last word (or tag before the last word)
   # before an optional closing element (<tt>a</tt>, <tt>em</tt>,
   # <tt>span</tt>, strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>,
-  # <tt>li</tt>, <tt>dt</tt>, <tt>dd</tt>) or the end of the string
+  # <tt>li</tt>, <tt>dt</tt>, <tt>dd</tt>) or the end of the string.
   #
   # @example
   # > widont('A very simple test')
@@ -119,7 +126,7 @@ module Typogruby
   end
 
   # surrounds two or more consecutive captial letters, perhaps with interspersed digits and periods
-  # in a span with a styled class
+  # in a span with a styled class.
   #
   # @example
   # caps("A message from KU")
@@ -155,7 +162,7 @@ module Typogruby
 
   # encloses initial single or double quote, or their entities
   # (optionally preceeded by a block element and perhaps an inline element)
-  # with a span that can be styled
+  # with a span that can be styled.
   #
   # @example
   # initial_quotes('"With primes"')
@@ -180,7 +187,7 @@ module Typogruby
     end
   end
 
-  # main function to do all the functions from the method
+  # main function to do all the functions from the method.
   # @param [String] text input text
   # @return [String] input text with all filters applied
   def improve(text)
