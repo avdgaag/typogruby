@@ -1,6 +1,12 @@
-require 'helper'
+require 'rubygems'
+require 'bundler'
+require 'test/unit'
+require 'typogruby'
+Bundler.setup
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 class TestTypogruby < Test::Unit::TestCase
+  include Typogruby
 
   def test_should_replace_amps
     assert_equal 'One <span class="amp">&amp;</span> two', amp('One & two')
