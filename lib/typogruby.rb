@@ -147,7 +147,7 @@ module Typogruby
   def caps(text)
     ignore_scripts(text) do |t|
       # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match
-      t.gsub(/<(?i)(code|pre)(?-i).+?<(?i)\/\1(?-i)>|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
+      t.gsub(/(?i:<(:code|pre).+?<\/\1>)|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
         excluded, before, caps = $1, $2, $3
         if excluded
           str
