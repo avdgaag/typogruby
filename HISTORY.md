@@ -2,6 +2,7 @@
 
 ## 1.0.7
 
+* Improved Ruby 1.9 compatibility
 * Improved documentation
 * Merged test helper and test case
 
