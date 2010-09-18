@@ -9,6 +9,10 @@
                 text-align: center;
                 color: #444;
             }
+            p, pre, h3, ol, ul, #footer {
+                margin: 20px 0;
+                padding: 0;
+            }
             #page {
                 width: 500px;
                 padding: 20px;
@@ -18,9 +22,8 @@
             }
             #footer {
                 text-align: center;
-                font-size: 11px;
+                font-size: 12px;
                 color: #999;
-                margin: 20px 0;
                 padding: 20px 0;
                 border-top: 1px dotted #ddd;
             }
@@ -38,8 +41,6 @@
                 clear: both;
                 visibility: hidden;
             }
-            #nav li {
-            }
             #nav a {
                 display: block;
                 line-height: 20px;
@@ -47,12 +48,9 @@
                 padding-right: 20px;
                 font-size: 12px;
             }
-            a {
+            a, a:visited {
                 color: #129FB8;
                 text-decoration: none;
-            }
-            a:visited {
-                color: #888;
             }
             a:hover {
                 text-decoration: underline;
@@ -62,18 +60,11 @@
                 top: 1px;
                 left: 1px;
             }
-            #content {
-                clear: both;
-            }
-            p, pre, h3, ol, ul {
-                margin: 20px 0;
-                padding: 0;
-            }
             li {
                 font-weight: bold;
                 color: #ccc;
             }
-            li * {
+            li p, li pre {
                 font-weight: normal;
                 color: #444;
             }
@@ -152,7 +143,7 @@ don&amp;rsquo;t you&nbsp;think?&amp;rdquo;</code></pre>
 
                 <h3>Usage</h3>
 
-                <p>Typogruby is a Ruby gem and as such requires Ruby installed on your system. Mac OS X and most linux distributions comes with Ruby installed by default.</p>
+                <p>Typogruby is a <a href="http://ruby-lang.org">Ruby</a> gem and as such requires Ruby installed on your system. Mac OS X and *nix systems usually come with Ruby installed by default.</p>
 
                 <p>To install the gem, open a terminal window and run:</p>
 
@@ -162,14 +153,12 @@ don&amp;rsquo;t you&nbsp;think?&amp;rdquo;</code></pre>
 
                 <ol>
                     <li>
-                        <p>Apply it to a file in the terminal:</p>
+                        <p>Apply it to a file <strong>in the terminal</strong>:</p>
                         <pre><code>typogruby index.html</code></pre>
-                        <p>This will output the updated file. To save your changes on disk, use:</p>
-                        <pre><code>typogruby index.html > index_improved.html</code></pre>
                         <p>Type <kbd>typogruby -h</kbd> for more information.</p>
                     </li>
                     <li>
-                        <p>Use it from a Ruby script:</p>
+                        <p>Use it <strong>from a Ruby script</strong>:</p>
                         <pre><code>require 'typogruby'
 puts Typogruby.improve('Hello, world!')</code></pre>
                     </li>
