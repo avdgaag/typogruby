@@ -5,6 +5,7 @@ require 'optparse'
 operations = [:smartypants, :initial_quotes, :amp, :widont, :caps]
 explicit_on = []
 explicit_off = []
+output_filename = nil
 
 OptionParser.new do |options|
   options.banner = <<-EOS
@@ -46,6 +47,10 @@ EOS
     (v ? explicit_on : explicit_off) << :caps
   end
 
+  options.on '-o', '--output FILENAME', 'Save output to file' do |v|
+    output_filename = v
+  end
+
   options.on_tail '-h', '--help', 'Show this message' do
     $stderr.print options
     exit
@@ -80,4 +85,18 @@ output = ARGV.inject('') do |output, filename|
   end
 end
 
-$stdout.print output
+# Either use the output_filename to save the output to a file on disk,
+# or print it to stdout
+if output_filename
+  begin
+    File.open(output_filename, 'w') do |f|
+      f.print output
+    end
+  rescue Exception => e
+    $stdout.print "A problem occured when trying to write to file #{output_filename}:"
+    $stdout.print e.message
+    exit 1
+  end
+else
+  $stdout.print output
+end
