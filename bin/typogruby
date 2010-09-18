@@ -20,6 +20,8 @@ Examples:
   typogruby --no-widows FILE  Runs all filters except for widows
   typogruby -w FILE           Runs only the filter for widows
   typogruby --widows FILE     Runs only the filter for widows
+  typogruby -o FILE2 FILE1    Filters FILE1 and saves to FILE2
+  cat FILE | typogruby        Filter input from STDIN
 
 Usage: typogruby [options] filename [filename, ...]
 EOS
@@ -71,18 +73,20 @@ else
   operations
 end
 
-unless ARGV.any?
-  $stderr.puts 'No file specified'
-  exit 1
-end
+begin
+  # Apply every filter to our input text
+  output = operations_todo.inject(ARGF.read) { |t, o| Typogruby.send(o, t) }
 
-output = ARGV.inject('') do |output, filename|
-  begin
-    output + operations_todo.inject(File.read(filename)) { |t, o| Typogruby.send(o, t) }
-  rescue
-    $stderr.print "Error processing '#{filename}'"
-    output
-  end
+# End the program nicely when the user interrupt with ctrl-c
+rescue Interrupt
+  $stderr.puts "Interrupted by user."
+  exit 1
+
+# Inform the user of any errors that have occured
+rescue Exception => e
+  $stderr.puts "Error processing '#{filename}':"
+  $stderr.puts e.message
+  exit 1
 end
 
 # Either use the output_filename to save the output to a file on disk,

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8 (unreleased)
+
+* Allow command-line output to disk via -o option
+* command-line tool reads both files and STDIN, enabling piping of content
+
 ## 1.0.7
 
 * Improved Ruby 1.9 compatibility
