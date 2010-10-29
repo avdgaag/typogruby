@@ -88,7 +88,7 @@ rescue Interrupt
 
 # Inform the user of any errors that have occured
 rescue Exception => e
-  $stderr.puts "Error processing '#{filename}':"
+  $stderr.puts "Error processing input:"
   $stderr.puts e.message
   exit 1
 end
