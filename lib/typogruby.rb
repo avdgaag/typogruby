@@ -1,5 +1,6 @@
 require 'rubypants'
 require 'digest/md5'
+$KCODE = 'U'
 
 # A collection of simple helpers for improving web
 # typograhy. Based on TypographyHelper by Luke Hartman and Typogrify.
@@ -187,6 +188,34 @@ module Typogruby
     end
   end
 
+  # Converts special characters (excluding HTML tags) to HTML entities.
+  #
+  # @example
+  # entities("Aloë Vera") # => "Alo&euml; Vera"
+  #
+  # @param [String] text input text
+  # @return [String] input text with all special characters converted to
+  #   HTML entities.
+  def entities(text)
+    o = ''
+    text.scan(/(?x)
+
+        ( <\?(?:[^?]*|\?(?!>))*\?>
+        | <!-- (?m:.*?) -->
+        | <\/? (?i:a|abbr|acronym|address|applet|area|b|base|basefont|bdo|big|blockquote|body|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|fieldset|font|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|hr|html|i|iframe|img|input|ins|isindex|kbd|label|legend|li|link|map|menu|meta|noframes|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|ul|var)\b
+            (?:[^>"']|"[^"]*"|'[^']*')*
+          >
+        | &(?:[a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+);
+        )
+        |([^<&]+|[<&])
+
+      /x) do |tag, text|
+      o << tag.to_s
+      o << encode(text.to_s)
+    end
+    o
+  end
+
   # main function to do all the functions from the method.
   # @param [String] text input text
   # @return [String] input text with all filters applied
@@ -195,6 +224,26 @@ module Typogruby
   end
 
 private
+
+  # Convert characters from the map in ./lib/characters.txt
+  # Code taken from TextMate HTML bundle
+  # @param [String] text input text
+  # @return [String] input text with all special characters converted to
+  #   HTML entities.
+  def encode(text)
+    @char_to_entity ||= begin
+      map = {}
+      File.read(File.join(File.dirname(__FILE__), 'characters.txt')).scan(/^(\d+)\s*(.+)$/) do |key, value|
+        map[[key.to_i].pack('U')] = value
+      end
+      map
+    end
+
+    text.gsub(/[^\x00-\x7F]|["'<>&]/) do |ch|
+      ent = @char_to_entity[ch]
+      ent ? "&#{ent};" : sprintf("&#x%02X;", ch.unpack("U")[0])
+    end
+  end
 
   # Hackish text filter that will make sure our text filters leave inline
   # javascript alone without resorting to a full-blown HTML parser.
