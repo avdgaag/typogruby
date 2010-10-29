@@ -41,6 +41,10 @@ EOS
     (v ? explicit_on : explicit_off) << :amp
   end
 
+  options.on '-n', '--[no-]entities', 'Convert special characters to HTML entities' do |v|
+    (v ? explicit_on : explicit_off) << :entities
+  end
+
   options.on '-w', '--[no-]widows', 'Prevent widows' do |v|
     (v ? explicit_on : explicit_off) << :widont
   end
