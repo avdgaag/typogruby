@@ -54,7 +54,7 @@
   
     
       <dt class="r1">Extended by:</dt>
-      <dd class="r1"><a href="" title="Typogruby (module)">Typogruby</a></dd>
+      <dd class="r1"><span class='object_link'><a href="" title="Typogruby (module)">Typogruby</a></span></dd>
       
     
   
@@ -62,7 +62,7 @@
   
   
     <dt class="r2">Included in:</dt>
-    <dd class="r2"><a href="" title="Typogruby (module)">Typogruby</a></dd>
+    <dd class="r2"><span class='object_link'><a href="" title="Typogruby (module)">Typogruby</a></span></dd>
     
   
   
@@ -78,6 +78,12 @@
 A collection of simple helpers for improving web typograhy. Based on
 TypographyHelper by Luke Hartman and Typogrify.
 </p>
+<p>
+require &#8216;typogruby&#8217; Typogruby.improve(&#8216;my text&#8217;)
+</p>
+<p>
+Typogruby.initial_quotes(&#8216;my text&#8217;)
+</p>
 
 
   </div>
@@ -91,15 +97,14 @@ TypographyHelper by Luke Hartman and Typogrify.
 Using all filters
 </p>
 </div></h4>
-      <pre class="example code"><span class='require identifier id'>require</span> <span class='string val'>'typogruby'</span>
-<span class='Typogruby constant id'>Typogruby</span><span class='dot token'>.</span><span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='string val'>'my text'</span><span class='rparen token'>)</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
 Using a single filter
 </p>
 </div></h4>
-      <pre class="example code"><span class='Typogruby constant id'>Typogruby</span><span class='dot token'>.</span><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'my text'</span><span class='rparen token'>)</span>
+      <pre class="example code">
 </pre>
     
   </div>
@@ -185,6 +190,30 @@ to the HTML entity and surrounds it in a span with a styled class.
     <span class="summary_desc"><div class='inline'><p>
 surrounds two or more consecutive captial letters, perhaps with
 interspersed digits and periods in a span with a styled class.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entities-instance_method" title="#entities (instance method)">- (String) <strong>entities</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Converts special characters (excluding HTML tags) to HTML entities.
 </p>
 </div></span>
   
@@ -338,6 +367,33 @@ strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
 converts a &amp; surrounded by optional whitespace or a non-breaking space
 to the HTML entity and surrounds it in a span with a styled class.
 </p>
+<p>
+amp(&#8216;One &amp; two&#8217;) # =&gt; &#8216;One &lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two&#8217; amp(&#8216;One
+&amp;amp; two&#8217;) # =&gt; &#8216;One &lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two&#8217; amp(&#8216;One
+&amp;#38; two&#8217;) # =&gt; &#8216;One &lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two&#8217;
+amp(&#8216;One&amp;nbsp;&amp;amp;&amp;nbsp;two&#8217;) # =&gt;
+&#8216;One&amp;nbsp;&lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;&amp;nbsp;two&#8217;
+</p>
+<p>
+amp(&#8216;One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;
+two&#8217;) # =&gt; &#8216;One &lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two&#8217;
+amp(&#8217;&amp;ldquo;this&amp;rdquo; &amp; &lt;a
+href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;&#8217;) # =&gt;
+&#8217;&amp;ldquo;this&amp;rdquo; &lt;span
+class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; &lt;a
+href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;&#8217;
+</p>
+<p>
+amp(&#8217;&lt;link href=&quot;xyz.html&quot; title=&quot;One &amp;
+Two&quot;&gt;xyz&lt;/link&gt;&#8217;) # =&gt; &#8217;&lt;link
+href=&quot;xyz.html&quot; title=&quot;One &amp;
+Two&quot;&gt;xyz&lt;/link&gt;&#8217;
+</p>
 
 
   </div>
@@ -347,34 +403,18 @@ to the HTML entity and surrounds it in a span with a styled class.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp; two'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
-<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp;amp; two'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
-<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &amp;#38; two'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
-<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One&amp;nbsp;&amp;amp;&amp;nbsp;two'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'One&amp;nbsp;&lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt;&amp;nbsp;two'</span>
-</pre>
-    
       <h4><div class='inline'><p>
 It won&#8217;t mess up &amp; that are already wrapped, in entities or URLs
 </p>
 </div></h4>
       <pre class="example code">
-<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'One &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; two'</span>
-<span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'&amp;ldquo;this&amp;rdquo; &amp; &lt;a href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&amp;ldquo;this&amp;rdquo; &lt;span class=&quot;amp&quot;&gt;&amp;amp;&lt;/span&gt; &lt;a href=&quot;/?that&amp;amp;test&quot;&gt;that&lt;/a&gt;'</span>
 </pre>
     
       <h4><div class='inline'><p>
 It should ignore standalone amps that are in attributes
 </p>
 </div></h4>
-      <pre class="example code"><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='string val'>'&lt;link href=&quot;xyz.html&quot; title=&quot;One &amp; Two&quot;&gt;xyz&lt;/link&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;link href=&quot;xyz.html&quot; title=&quot;One &amp; Two&quot;&gt;xyz&lt;/link&gt;'</span>
+      <pre class="example code">
 </pre>
     
   </div>
@@ -425,17 +465,17 @@ input text with ampersands wrapped
       <pre class="lines">
 
 
-63
 64
 65
 66
 67
 68
 69
-70</pre>
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 64</span>
 
 <span class='def def kw'>def</span> <span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match</span>
@@ -464,6 +504,24 @@ input text with ampersands wrapped
 surrounds two or more consecutive captial letters, perhaps with
 interspersed digits and periods in a span with a styled class.
 </p>
+<p>
+caps(&quot;A message from KU&quot;) # =&gt; &#8216;A message from &lt;span
+class=&quot;caps&quot;&gt;KU&lt;/span&gt;&#8217;
+</p>
+<p>
+caps(&quot;A message from 2KU2 with digits&quot;) # =&gt; &#8216;A message
+from &lt;span class=&quot;caps&quot;&gt;2KU2&lt;/span&gt; with
+digits&#8217;
+</p>
+<p>
+caps(&quot;JIMMY&#8217;S&quot;) # =&gt; &#8217;&lt;span
+class=&quot;caps&quot;&gt;JIMMY\&#8217;S&lt;/span&gt;&#8217;
+caps(&quot;<em>D.O.T.</em>HE34T<b>RFID</b>&quot;) # =&gt;
+&#8216;<em>&lt;span
+class=&quot;caps&quot;&gt;D.O.T.&lt;/span&gt;</em>&lt;span
+class=&quot;caps&quot;&gt;HE34T&lt;/span&gt;<b>&lt;span
+class=&quot;caps&quot;&gt;RFID&lt;/span&gt;</b>&#8216;
+</p>
 
 
   </div>
@@ -473,17 +531,11 @@ interspersed digits and periods in a span with a styled class.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;A message from KU&quot;</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'A message from &lt;span class=&quot;caps&quot;&gt;KU&lt;/span&gt;'</span>
-</pre>
-    
       <h4><div class='inline'><p>
 Allows digits
 </p>
 </div></h4>
-      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;A message from 2KU2 with digits&quot;</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'A message from &lt;span class=&quot;caps&quot;&gt;2KU2&lt;/span&gt; with digits'</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
@@ -491,10 +543,7 @@ All caps with with apostrophes in them shouldn&#8217;t break. Only handles
 dump apostrophes though.
 </p>
 </div></h4>
-      <pre class="example code"><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;JIMMY'S&quot;</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;span class=&quot;caps&quot;&gt;JIMMY\\'S&lt;/span&gt;'</span>
-<span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='string val'>&quot;&lt;i&gt;D.O.T.&lt;/i&gt;HE34T&lt;b&gt;RFID&lt;/b&gt;&quot;</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;i&gt;&lt;span class=&quot;caps&quot;&gt;D.O.T.&lt;/span&gt;&lt;/i&gt;&lt;span class=&quot;caps&quot;&gt;HE34T&lt;/span&gt;&lt;b&gt;&lt;span class=&quot;caps&quot;&gt;RFID&lt;/span&gt;&lt;/b&gt;'</span>
+      <pre class="example code">
 </pre>
     
   </div>
@@ -545,7 +594,6 @@ input text with caps wrapped
       <pre class="lines">
 
 
-147
 148
 149
 150
@@ -559,15 +607,16 @@ input text with caps wrapped
 158
 159
 160
-161</pre>
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 148</span>
 
 <span class='def def kw'>def</span> <span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
     <span class='comment val'># $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match</span>
-    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/&lt;(?i)(code|pre)(?-i).+?&lt;(?i)\/\1(?-i)&gt;|(\s|&amp;nbsp;|^|'|&quot;|&gt;)([A-Z\d][A-Z\d\.']{1,})(?!\w)/</span><span class='rparen token'>)</span>  <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
+    <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/(?i:&lt;(:code|pre).+?&lt;\/\1&gt;)|(\s|&amp;nbsp;|^|'|&quot;|&gt;)([A-Z\d][A-Z\d\.']{1,})(?!\w)/</span><span class='rparen token'>)</span>  <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='str identifier id'>str</span><span class='bitor op'>|</span>
       <span class='excluded identifier id'>excluded</span><span class='comma token'>,</span> <span class='before identifier id'>before</span><span class='comma token'>,</span> <span class='caps identifier id'>caps</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span><span class='comma token'>,</span> <span class='$2 nth_ref id'>$2</span><span class='comma token'>,</span> <span class='$3 nth_ref id'>$3</span>
       <span class='if if kw'>if</span> <span class='excluded identifier id'>excluded</span>
         <span class='str identifier id'>str</span>
@@ -578,6 +627,121 @@ input text with caps wrapped
       <span class='end end kw'>end</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="entities-instance_method">
+  
+    - (<tt>String</tt>) <strong>entities</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Converts special characters (excluding HTML tags) to HTML entities.
+</p>
+<p>
+entities(&quot;Aloë Vera&quot;) # =&gt; &quot;Alo&amp;euml; Vera&quot;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+input text with all special characters converted to HTML entities.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 199</span>
+
+<span class='def def kw'>def</span> <span class='entities identifier id'>entities</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='o identifier id'>o</span> <span class='assign token'>=</span> <span class='string val'>''</span>
+  <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='regexp val'>/(?x)
+
+      ( &lt;\?(?:[^?]*|\?(?!&gt;))*\?&gt;
+      | &lt;!-- (?m:.*?) --&gt;
+      | &lt;\/? (?i:a|abbr|acronym|address|applet|area|b|base|basefont|bdo|big|blockquote|body|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|fieldset|font|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|hr|html|i|iframe|img|input|ins|isindex|kbd|label|legend|li|link|map|menu|meta|noframes|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|ul|var)\b
+          (?:[^&gt;&quot;']|&quot;[^&quot;]*&quot;|'[^']*')*
+        &gt;
+      | &amp;(?:[a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+);
+      )
+      |([^&lt;&amp;]+|[&lt;&amp;])
+
+    /</span><span class='x identifier id'>x</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='tag identifier id'>tag</span><span class='comma token'>,</span> <span class='text identifier id'>text</span><span class='bitor op'>|</span>
+    <span class='o identifier id'>o</span> <span class='lshft op'>&lt;&lt;</span> <span class='tag identifier id'>tag</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+    <span class='o identifier id'>o</span> <span class='lshft op'>&lt;&lt;</span> <span class='encode identifier id'>encode</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='o identifier id'>o</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -649,12 +813,12 @@ input text with all filters applied
       <pre class="lines">
 
 
-193
-194
-195</pre>
+222
+223
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 222</span>
 
 <span class='def def kw'>def</span> <span class='improve identifier id'>improve</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='caps identifier id'>caps</span><span class='lparen token'>(</span><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='amp identifier id'>amp</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -679,6 +843,27 @@ encloses initial single or double quote, or their entities (optionally
 preceeded by a block element and perhaps an inline element) with a span
 that can be styled.
 </p>
+<p>
+initial_quotes(&#8217;&quot;With primes&quot;&#8217;) # =&gt;
+&#8217;&lt;span class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With
+primes&quot;&#8217; initial_quotes(&quot;&#8217;With single
+primes&#8217;&quot;) # =&gt; &#8217;&lt;span
+class=&quot;quo&quot;&gt;\&#8217;&lt;/span&gt;With single
+primes\&#8217;&#8216;
+</p>
+<p>
+initial_quotes(&#8217;&lt;a href=&quot;#&quot;&gt;&quot;With primes and a
+link&quot;&lt;/a&gt;&#8217;) # =&gt; &#8217;&lt;a
+href=&quot;#&quot;&gt;&lt;span
+class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With primes and a
+link&quot;&lt;/a&gt;&#8217;
+</p>
+<p>
+initial_quotes(&#8217;&amp;#8220;With smartypanted
+quotes&amp;#8221;&#8217;) # =&gt; &#8217;&lt;span
+class=&quot;dquo&quot;&gt;&amp;#8220;&lt;/span&gt;With smartypanted
+quotes&amp;#8221;&#8217;
+</p>
 
 
   </div>
@@ -688,27 +873,18 @@ that can be styled.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&quot;With primes&quot;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;span class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With primes&quot;'</span>
-<span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>&quot;'With single primes'&quot;</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;span class=&quot;quo&quot;&gt;\\'&lt;/span&gt;With single primes\\''</span>
-</pre>
-    
       <h4><div class='inline'><p>
 With primes and links
 </p>
 </div></h4>
-      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&lt;a href=&quot;#&quot;&gt;&quot;With primes and a link&quot;&lt;/a&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;a href=&quot;#&quot;&gt;&lt;span class=&quot;dquo&quot;&gt;&quot;&lt;/span&gt;With primes and a link&quot;&lt;/a&gt;'</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
 with Smartypants-quotes
 </p>
 </div></h4>
-      <pre class="example code"><span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='string val'>'&amp;#8220;With smartypanted quotes&amp;#8221;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;span class=&quot;dquo&quot;&gt;&amp;#8220;&lt;/span&gt;With smartypanted quotes&amp;#8221;'</span>
+      <pre class="example code">
 </pre>
     
   </div>
@@ -759,15 +935,15 @@ input text with initial quotes wrapped
       <pre class="lines">
 
 
-183
 184
 185
 186
 187
-188</pre>
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 184</span>
 
 <span class='def def kw'>def</span> <span class='initial_quotes identifier id'>initial_quotes</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='comment val'># $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote</span>
@@ -793,22 +969,16 @@ input text with initial quotes wrapped
     <p>
 Applies smartypants to a given piece of text
 </p>
+<p>
+smartypants(&#8216;The &quot;Green&quot; man&#8217;) # =&gt; &#8216;The
+&amp;#8220;Green&amp;#8221; man&#8217;
+</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='string val'>'The &quot;Green&quot; man'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'The &amp;#8220;Green&amp;#8221; man'</span>
-</pre>
-    
-  </div>
-<h3>Parameters:</h3>
+  <h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -855,12 +1025,12 @@ input text with smartypants applied
       <pre class="lines">
 
 
-33
 34
-35</pre>
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 34</span>
 
 <span class='def def kw'>def</span> <span class='smartypants identifier id'>smartypants</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='colon3 op'>::</span><span class='RubyPants constant id'>RubyPants</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_html identifier id'>to_html</span>
@@ -908,12 +1078,12 @@ Get the current gem version number
       <pre class="lines">
 
 
-21
 22
-23</pre>
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 22</span>
 
 <span class='def def kw'>def</span> <span class='version identifier id'>version</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='dstring node'>%w{.. VERSION}</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -939,6 +1109,48 @@ an optional closing element (<tt>a</tt>, <tt>em</tt>, <tt>span</tt>,
 strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
 <tt>dt</tt>, <tt>dd</tt>) or the end of the string.
 </p>
+<p>
+&gt; widont(&#8216;A very simple test&#8217;) # =&gt; &#8216;A very
+simple&amp;nbsp;test&#8217;
+</p>
+<p>
+widont(&#8216;Test&#8217;) # =&gt; &#8216;Test&#8217; widont(&#8217;
+Test&#8217;) # =&gt; &#8217; Test&#8217;
+widont(&#8217;&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;&#8217;)
+# =&gt;
+&#8217;&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;&#8217;
+widont(&#8217;&lt;ul&gt;&lt;li&gt;
+Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;&#8217;) # =&gt;
+&#8217;&lt;ul&gt;&lt;li&gt; Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;&#8217;
+</p>
+<p>
+widont(&#8217;&lt;p&gt;In a couple of
+paragraphs&lt;/p&gt;&lt;p&gt;paragraph two&lt;/p&gt;&#8217;) # =&gt;
+&#8217;&lt;p&gt;In a couple
+of&amp;nbsp;paragraphs&lt;/p&gt;&lt;p&gt;paragraph&amp;nbsp;two&lt;/p&gt;&#8217;
+widont(&#8217;&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside a
+heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;&#8217;) # =&gt;
+&#8217;&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside
+a&amp;nbsp;heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;&#8217;
+widont(&#8217;&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link&lt;/a&gt;
+followed by other text&lt;/h1&gt;&#8217;) # =&gt; &#8217;&lt;h1&gt;&lt;a
+href=&quot;#&quot;&gt;In a link&lt;/a&gt; followed by
+other&amp;nbsp;text&lt;/h1&gt;&#8217;
+</p>
+<p>
+widont(&#8217;&lt;h1&gt;&lt;a
+href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&#8217;) # =&gt;
+&#8217;&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&#8217;
+</p>
+<p>
+widont(&#8217;&lt;div&gt;Divs get no love!&lt;/div&gt;&#8217;) # =&gt;
+&#8217;&lt;div&gt;Divs get no love!&lt;/div&gt;&#8217;
+widont(&#8217;&lt;pre&gt;Neither do PREs&lt;/pre&gt;&#8217;) # =&gt;
+&#8217;&lt;pre&gt;Neither do PREs&lt;/pre&gt;&#8217;
+widont(&#8217;&lt;div&gt;&lt;p&gt;But divs with paragraphs
+do!&lt;/p&gt;&lt;/div&gt;&#8217;) # =&gt; &#8217;&lt;div&gt;&lt;p&gt;But
+divs with paragraphs&amp;nbsp;do!&lt;/p&gt;&lt;/div&gt;&#8217;
+</p>
 
 
   </div>
@@ -948,55 +1160,32 @@ strong) before a closing tag (<tt>p</tt>, <tt>h[1-6]</tt>, <tt>li</tt>,
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='gt op'>&gt;</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'A very simple test'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'A very simple&amp;nbsp;test'</span>
-</pre>
-    
       <h4><div class='inline'><p>
 Single word items shouldn&#8217;t be changed
 </p>
 </div></h4>
-      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'Test'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; 'Test'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>' Test'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; ' Test'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;ul&gt;&lt;li&gt;Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;ul&gt;&lt;li&gt; Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;ul&gt;&lt;li&gt; Test&lt;/p&gt;&lt;/li&gt;&lt;ul&gt;'</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
 Nested tags
 </p>
 </div></h4>
-      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;p&gt;In a couple of paragraphs&lt;/p&gt;&lt;p&gt;paragraph two&lt;/p&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;p&gt;In a couple of&amp;nbsp;paragraphs&lt;/p&gt;&lt;p&gt;paragraph&amp;nbsp;two&lt;/p&gt;'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside a heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link inside a&amp;nbsp;heading&lt;/i&gt; &lt;/a&gt;&lt;/h1&gt;'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link&lt;/a&gt; followed by other text&lt;/h1&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;In a link&lt;/a&gt; followed by other&amp;nbsp;text&lt;/h1&gt;'</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
 Empty HTMLs shouldn&#8217;t error
 </p>
 </div></h4>
-      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/h1&gt;'</span>
+      <pre class="example code">
 </pre>
     
       <h4><div class='inline'><p>
 Excluded tags
 </p>
 </div></h4>
-      <pre class="example code"><span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;div&gt;Divs get no love!&lt;/div&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;div&gt;Divs get no love!&lt;/div&gt;'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;pre&gt;Neither do PREs&lt;/pre&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;pre&gt;Neither do PREs&lt;/pre&gt;'</span>
-<span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='string val'>'&lt;div&gt;&lt;p&gt;But divs with paragraphs do!&lt;/p&gt;&lt;/div&gt;'</span><span class='rparen token'>)</span>
-<span class='comment val'># =&gt; '&lt;div&gt;&lt;p&gt;But divs with paragraphs&amp;nbsp;do!&lt;/p&gt;&lt;/div&gt;'</span>
+      <pre class="example code">
 </pre>
     
   </div>
@@ -1056,7 +1245,6 @@ input text with non-breaking spaces inserted
       <pre class="lines">
 
 
-115
 116
 117
 118
@@ -1067,10 +1255,11 @@ input text with non-breaking spaces inserted
 123
 124
 125
-126</pre>
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/typogruby.rb', line 116</span>
 
 <span class='def def kw'>def</span> <span class='widont identifier id'>widont</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='ignore_scripts identifier id'>ignore_scripts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
@@ -1095,9 +1284,9 @@ input text with non-breaking spaces inserted
 </div>
     
     <div id="footer">
-  Generated on Thu Aug 19 11:43:31 2010 by 
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.8.7).
+  Generated on Sat Nov  6 15:48:14 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
 </div>
 
   </body>
