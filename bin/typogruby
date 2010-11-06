@@ -63,7 +63,7 @@ EOS
   end
 
   options.on_tail '-v', '--version', 'Display version information' do
-    $stderr.print Typogruby.version
+    $stderr.print "Typogruby #{Typogruby.version}"
     exit
   end
   options.parse!
