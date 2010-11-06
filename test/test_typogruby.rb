@@ -91,4 +91,9 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal "<script>\nreturn window;\n</script>", widont("<script>\nreturn window;\n</script>")
     assert_equal '<div><p>But divs with paragraphs&nbsp;do!</p></div>', widont('<div><p>But divs with paragraphs do!</p></div>')
   end
+
+  def test_should_convert_entities
+    assert_equal "Vari&euml;ren&hellip;", entities('Variëren…')
+    assert_equal "<p>Ol&eacute;</p>", entities('<p>Olé</p>')
+  end
 end
