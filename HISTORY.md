@@ -1,9 +1,11 @@
 # Changelog
 
-## 1.0.8 (unreleased)
+## 1.0.8
 
 * Allow command-line output to disk via -o option
 * command-line tool reads both files and STDIN, enabling piping of content
+* added filter to replace special characters with HTML entities
+* better tests for the command-line tool with cucumber and aruba
 
 ## 1.0.7
 
