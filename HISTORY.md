@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.9
+
+* Bugfix: ignore caps in HTML attribute values
+
 ## 1.0.8
 
 * Allow command-line output to disk via -o option
