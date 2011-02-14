@@ -35,7 +35,6 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<Pre>CAPS</PRE> with odd tag names <span class="caps">CAPS</span>', caps("<Pre>CAPS</PRE> with odd tag names CAPS")
     assert_equal 'A message from <span class="caps">2KU2</span> with digits', caps("A message from 2KU2 with digits")
     assert_equal 'Dotted caps followed by spaces should never include them in the wrap <span class="caps">D.O.T.</span>   like so.', caps("Dotted caps followed by spaces should never include them in the wrap D.O.T.   like so.")
-    assert_equal %Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"}, initial_quotes(%Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"})
   end
 
   def test_should_not_break_caps_with_apostrophes
@@ -49,6 +48,7 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<a href="#"><span class="dquo">"</span>With primes and a link"</a>', initial_quotes('<a href="#">"With primes and a link"</a>')
     assert_equal '<span class="dquo">&#8220;</span>With smartypanted quotes&#8221;', initial_quotes('&#8220;With smartypanted quotes&#8221;')
     assert_equal '<span class="quo">&lsquo;</span>With manual quotes&rsquo;', initial_quotes('&lsquo;With manual quotes&rsquo;')
+    assert_equal %Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"}, initial_quotes(%Q{<script>\nvar x = "FOO BAR and BAZ";\n</script>"})
   end
 
   def test_should_not_replace_quotes_in_scripts
