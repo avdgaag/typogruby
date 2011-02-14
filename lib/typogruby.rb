@@ -137,6 +137,10 @@ module Typogruby
   # caps("A message from 2KU2 with digits")
   # # => 'A message from <span class="caps">2KU2</span> with digits'
   #
+  # @example Ignores HTML attributes
+  # caps('Download <a href="file.doc" title="PDF document">this file</a>')
+  # # => 'Download <a href="file.doc" title="PDF document">this file</a>'
+  #
   # @example All caps with with apostrophes in them shouldn't break. Only handles dump apostrophes though.
   # caps("JIMMY'S")
   # # => '<span class="caps">JIMMY\\'S</span>'
@@ -147,10 +151,19 @@ module Typogruby
   # @return [String] input text with caps wrapped
   def caps(text)
     ignore_scripts(text) do |t|
-      # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the caps match
-      t.gsub(/(?i:<(:code|pre).+?<\/\1>)|(\s|&nbsp;|^|'|"|>)([A-Z\d][A-Z\d\.']{1,})(?!\w)/)  do |str|
-        excluded, before, caps = $1, $2, $3
-        if excluded
+      # $1 and $2 are excluded HTML tags, $3 is the part before the caps and $4 is the caps match
+      t.gsub(%r{
+          (?i:<(code|pre).+?</\1>)|     # Ignore the contents of code and pre elements
+          (<[^/][^>]+?>)|               # Ignore any opening tag, so we don't mess up attribute values
+          (\s|&nbsp;|^|'|"|>)           # Make sure our capture is preceded by whitespace or quotes
+          ([A-Z\d][A-Z\d\.']{1,})       # Capture captial words, with optional dots or numbers in between
+          (?!\w)                        # ...which must not be followed by a word character.
+        }x) do |str|
+        excluded, tag, before, caps = $1, $2, $3, $4
+
+        # Do nothing with the contents if ignored tags, the inside of an opening HTML element
+        # so we don't mess up attribute values, or if our capture is only digits.
+        if excluded || tag || caps =~ /^\d+\.?$/
           str
         elsif $3 =~ /^[\d\.]+$/
           before + caps
