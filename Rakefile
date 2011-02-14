@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'rake'
-require 'bundler'
+require 'bundler/setup'
 
 begin
   require 'jeweler'
@@ -37,8 +37,6 @@ rescue LoadError
     abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
   end
 end
-
-task :test => :check_dependencies
 
 task :default => :test
 

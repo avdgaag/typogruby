@@ -1,12 +1,10 @@
 source :rubyforge
 gem 'rubypants'
 
-group :development do
+group :development, :test do
   gem 'yard'
   gem 'jeweler'
-end
-
-group :test do
+  gem 'rake'
   gem 'aruba'
   gem 'cucumber'
 end
