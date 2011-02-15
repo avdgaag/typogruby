@@ -1,22 +1,8 @@
-require 'rubygems'
-require 'rake'
-require 'bundler/setup'
+require 'bundler'
+Bundler::GemHelper.install_tasks
+Bundler.setup
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "typogruby"
-    gem.summary = %Q{Improves web typography like Django's Typogrify}
-    gem.description = %Q{Improve web typography using various text filters. This gem prevents widows and applies markup to ampersans, consecutive capitals and initial quotes.}
-    gem.email = "arjan@arjanvandergaag.nl"
-    gem.homepage = "http://avdgaag.github.com/typogruby"
-    gem.authors = ["Arjan van der Gaag"]
-    gem.add_bundler_dependencies
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
+task :default => :test
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -25,32 +11,64 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
+def read_version
+  @version = File.read(File.join(File.dirname(__FILE__), 'lib', 'typogruby.rb'))[/^\s*VERSION\s+=\s+'([^']+)'$/, 1]
+end
+
+def write_version(v)
+  file = File.join(File.dirname(__FILE__), 'lib', 'typogruby.rb')
+  contents = File.read(file).gsub(/^\s*VERSION\s+=\s+'([^']+)'/) do |m|
+    m.sub($1, v)
   end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
+  File.open(file, 'w') do |f|
+    f.write contents
   end
 end
 
-task :default => :test
+desc 'Display the current version number'
+task :version do
+  puts read_version
+end
 
-begin
-  require 'yard'
-  YARD::Rake::YardocTask.new do |t|
-    t.options = [
-      '--files', 'LICENSE',
-      '--files', 'HISTORY.md',
-      '--title', 'Typogruby API documentation'
-    ]
+namespace :version do
+  desc 'Explicitly write a new version number'
+  task :write do
+    write_version ENV['VERSION']
   end
-rescue LoadError
-  task :yardoc do
-    abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
+
+  namespace :bump do
+    desc 'Bump version number to new major'
+    task :major do
+      major, minor, patch = read_version.split('.')
+      major = major.to_i + 1
+      minor = 0
+      patch = 0
+      write_version [major, minor, patch].join('.')
+    end
+
+    desc 'Bump version number to new minor'
+    task :minor do
+      major, minor, patch = read_version.split('.')
+      minor = minor.to_i + 1
+      patch = 0
+      write_version [major, minor, patch].join('.')
+    end
+
+    desc 'Bump version number to new patch'
+    task :patch do
+      major, minor, patch = read_version.split('.')
+      patch = patch.to_i + 1
+      write_version [major, minor, patch].join('.')
+    end
   end
 end
+
+require 'yard'
+YARD::Rake::YardocTask.new do |t|
+  t.options = [
+    '--files', 'LICENSE',
+    '--files', 'HISTORY.md',
+    '--title', 'Typogruby API documentation'
+  ]
+end
+
