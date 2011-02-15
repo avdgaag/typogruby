@@ -17,9 +17,6 @@ $KCODE = 'U'
 # @author Arjan van der Gaag <arjan.vandergaag@gmail.com>
 module Typogruby
 
-  # Current gem version number, formatted like major.minor.patch
-  VERSION = '1.0.9'
-
   # Applies smartypants to a given piece of text
   #
   # @example

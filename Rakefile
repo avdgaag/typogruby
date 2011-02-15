@@ -18,11 +18,11 @@ Cucumber::Rake::Task.new(:features) do |t|
 end
 
 def read_version
-  @version = File.read(File.join(File.dirname(__FILE__), 'lib', 'typogruby.rb'))[/^\s*VERSION\s+=\s+'([^']+)'$/, 1]
+  @version = File.read(File.join(File.dirname(__FILE__), 'lib', 'version.rb'))[/^\s*VERSION\s+=\s+'([^']+)'$/, 1]
 end
 
 def write_version(v)
-  file = File.join(File.dirname(__FILE__), 'lib', 'typogruby.rb')
+  file = File.join(File.dirname(__FILE__), 'lib', 'version.rb')
   contents = File.read(file).gsub(/^\s*VERSION\s+=\s+'([^']+)'/) do |m|
     m.sub($1, v)
   end

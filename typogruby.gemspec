@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-require 'lib/typogruby'
+require 'lib/version'
 
 Gem::Specification.new do |s|
   # Metadata
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('aruba',     ['>= 0'])
   s.add_development_dependency('cucumber',  ['>= 0'])
   s.add_development_dependency('rcov',      ['>= 0'])
+  s.add_development_dependency('rspec',     ['>= 0'])
   s.add_development_dependency('bluecloth', ['>= 0'])
 end
 
