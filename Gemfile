@@ -1,10 +1,3 @@
-source :rubyforge
-gem 'rubypants'
+source :rubygems
+gemspec
 
-group :development, :test do
-  gem 'yard'
-  gem 'jeweler'
-  gem 'rake'
-  gem 'aruba'
-  gem 'cucumber'
-end
