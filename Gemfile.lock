@@ -26,11 +26,6 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.3.3)
       json (~> 1.4.6)
-    git (1.2.5)
-    jeweler (1.5.2)
-      bundler (~> 1.0.0)
-      git (>= 1.2.5)
-      rake
     json (1.4.6)
     rake (0.8.7)
     rcov (0.9.9)
@@ -53,7 +48,6 @@ DEPENDENCIES
   aruba
   bluecloth
   cucumber
-  jeweler
   rake
   rcov
   rspec
