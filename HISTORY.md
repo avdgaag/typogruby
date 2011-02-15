@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.10
+
+* Decoupled jeweler, which is no longer a dependency.
+* Various minor documentation issues and internal refactorings
+
 ## 1.0.9
 
 * Bugfix: ignore caps in HTML attribute values
