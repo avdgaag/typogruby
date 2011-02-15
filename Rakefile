@@ -25,16 +25,19 @@ def write_version(v)
   end
 end
 
+desc 'Display the current version number'
 task :version do
   puts read_version
 end
 
 namespace :version do
+  desc 'Explicitly write a new version number'
   task :write do
     write_version ENV['VERSION']
   end
 
   namespace :bump do
+    desc 'Bump version number to new major'
     task :major do
       major, minor, patch = read_version.split('.')
       major = major.to_i + 1
@@ -43,6 +46,7 @@ namespace :version do
       write_version [major, minor, patch].join('.')
     end
 
+    desc 'Bump version number to new minor'
     task :minor do
       major, minor, patch = read_version.split('.')
       minor = minor.to_i + 1
@@ -50,6 +54,7 @@ namespace :version do
       write_version [major, minor, patch].join('.')
     end
 
+    desc 'Bump version number to new patch'
     task :patch do
       major, minor, patch = read_version.split('.')
       patch = patch.to_i + 1
