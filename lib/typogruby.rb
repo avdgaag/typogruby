@@ -17,11 +17,8 @@ $KCODE = 'U'
 # @author Arjan van der Gaag <arjan.vandergaag@gmail.com>
 module Typogruby
 
-  # Get the current gem version number
-  # @return [String]
-  def version
-    File.read(File.join(File.dirname(__FILE__), *%w{.. VERSION}))
-  end
+  # Current gem version number, formatted like major.minor.patch
+  VERSION = '1.0.9'
 
   # Applies smartypants to a given piece of text
   #
