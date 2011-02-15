@@ -14,8 +14,9 @@ Feature: various inputs
         <p>This is another file</p>
         """
 
+    @wip
     Scenario: take input from STDIN
-        When I run "cat input.html | typogruby"
+        When I run "typogruby < input.html"
         Then the output should contain exactly:
         """
         <p><span class="dquo">&#8220;</span>This <span class="caps">IS</span> a simple&nbsp;file!</p>
