@@ -268,7 +268,7 @@ private
   # @return [String] input with script tags restored
   def ignore_scripts(text)
     @ignored_scripts = {}
-    modified_text = text.gsub(/<script[^>]*>.*?<\/script>/mi) do |script|
+    modified_text = text.gsub(/<(pre|code|kbd|math|script)[^>]*>.*?<\/\1>/mi) do |script|
       hash = Digest::MD5.hexdigest(script)
       @ignored_scripts[hash] = script
       hash
