@@ -254,18 +254,22 @@ private
     end
   end
 
-  # Hackish text filter that will make sure our text filters leave inline
-  # javascript alone without resorting to a full-blown HTML parser.
+  # Hackish text filter that will make sure our text filters leave 
+  # sensitive tags  alone without resorting to a full-blown HTML parser.
+  #
+  # Sensitive tags are tags with literal contents, which we do not
+  # want to change. It currently ignores: <pre>, <code>, <kbd>, <math>
+  # and <script>.
   #
   # The idea is simple: every text filter is applied as a block to this
-  # method. This will preprocess the text and replace any inline scripts
+  # method. This will preprocess the text and replace any sensitive tags
   # with a MD5 hash of its entire contents. Then the filter is called,
   # and then the hashes are replaced back with their original content.
   #
-  # @yield [hashed_text] Hands you the input text with all script tags
+  # @yield [hashed_text] Hands you the input text with all sensitive tags
   #   hashed. The block's result will be unhashed and then returned.
   # @param [String] text
-  # @return [String] input with script tags restored
+  # @return [String] input with sensitive tags restored
   def ignore_scripts(text)
     @ignored_scripts = {}
     modified_text = text.gsub(/<(pre|code|kbd|math|script)[^>]*>.*?<\/\1>/mi) do |script|
