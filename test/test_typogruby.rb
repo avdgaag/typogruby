@@ -97,4 +97,11 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal "Vari&euml;ren&hellip;", entities('Variëren…')
     assert_equal "<p>Ol&eacute;</p>", entities('<p>Olé</p>')
   end
+
+  def test_should_leave_sensitive_tags_alone
+    %w{script pre code kbd math}.each do |tag_name|
+      test_string = "<#{tag_name}>“CAPS & chårs” and widows</#{tag_name}>"
+      assert_equal test_string, improve(test_string)
+    end
+  end
 end
