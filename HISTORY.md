@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.11
+
+* Excluded more typography-sensitive tags from filtering (thanks Justin Hileman)
+
 ## 1.0.10
 
 * Decoupled jeweler, which is no longer a dependency.
