@@ -57,7 +57,7 @@ module Typogruby
   # @return [String] input text with ampersands wrapped
   def amp(text)
     # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match
-    ignore_scripts(text) do |t|
+    exclude_sensitive_tags(text) do |t|
       t.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;)&(?:amp;|#38;)?(\s|&nbsp;)/) { |str|
         $1 ? str : $2 + '<span class="amp">&amp;</span>' + $3
       }.gsub(/(\w+)="(.*?)<span class="amp">&amp;<\/span>(.*?)"/, '\1="\2&amp;\3"')
@@ -108,7 +108,7 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with non-breaking spaces inserted
   def widont(text)
-    ignore_scripts(text) do |t|
+    exclude_sensitive_tags(text) do |t|
       t.gsub(%r{
         ((?:</?(?:a|em|span|strong|i|b)[^>]*>)|[^<>\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
         \s+                                             # the space to replace
@@ -144,7 +144,7 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with caps wrapped
   def caps(text)
-    ignore_scripts(text) do |t|
+    exclude_sensitive_tags(text) do |t|
       # $1 and $2 are excluded HTML tags, $3 is the part before the caps and $4 is the caps match
       t.gsub(%r{
           (?i:<(code|pre).+?</\1>)|     # Ignore the contents of code and pre elements
@@ -190,7 +190,7 @@ module Typogruby
   # @return [String] input text with initial quotes wrapped
   def initial_quotes(text)
     # $1 is the initial part of the string, $2 is the quote or entitity, and $3 is the double quote
-    ignore_scripts(text) do |t|
+    exclude_sensitive_tags(text) do |t|
       t.gsub(/((?:<(?:h[1-6]|p|li|dt|dd)[^>]*>|^)\s*(?:<(?:a|em|strong|span)[^>]*>)?)('|&#8216;|&lsquo;|("|&#8220;|&ldquo;))/) {$1 + "<span class=\"#{'d' if $3}quo\">#{$2}</span>"}
     end
   end
@@ -255,7 +255,7 @@ private
   end
 
   # Hackish text filter that will make sure our text filters leave 
-  # sensitive tags  alone without resorting to a full-blown HTML parser.
+  # sensitive tags alone without resorting to a full-blown HTML parser.
   #
   # Sensitive tags are tags with literal contents, which we do not
   # want to change. It currently ignores: <pre>, <code>, <kbd>, <math>
@@ -270,15 +270,15 @@ private
   #   hashed. The block's result will be unhashed and then returned.
   # @param [String] text
   # @return [String] input with sensitive tags restored
-  def ignore_scripts(text)
-    @ignored_scripts = {}
+  def exclude_sensitive_tags(text)
+    @exluded_sensitive_tags = {}
     modified_text = text.gsub(/<(pre|code|kbd|math|script)[^>]*>.*?<\/\1>/mi) do |script|
       hash = Digest::MD5.hexdigest(script)
-      @ignored_scripts[hash] = script
+      @exluded_sensitive_tags[hash] = script
       hash
     end
-    yield(modified_text).gsub(/#{@ignored_scripts.keys.join('|')}/) do |h|
-      @ignored_scripts.delete(h)
+    yield(modified_text).gsub(/#{@exluded_sensitive_tags.keys.join('|')}/) do |h|
+      @exluded_sensitive_tags.delete(h)
     end
   end
 
