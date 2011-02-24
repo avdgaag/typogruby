@@ -272,7 +272,7 @@ private
   # @return [String] input with sensitive tags restored
   def exclude_sensitive_tags(text)
     @exluded_sensitive_tags = {}
-    modified_text = text.gsub(/<(pre|code|kbd|math|script)[^>]*>.*?<\/\1>/mi) do |script|
+    modified_text = text.gsub(/<(#{EXCLUDED_TAGS .join('|')})[^>]*>.*?<\/\1>/mi) do |script|
       hash = Digest::MD5.hexdigest(script)
       @exluded_sensitive_tags[hash] = script
       hash
@@ -281,6 +281,9 @@ private
       @exluded_sensitive_tags.delete(h)
     end
   end
+
+  # Array of all the senstive tags that should be ignored by all the text filters.
+  EXCLUDED_TAGS  = %w{pre code kbd math script}
 
   extend self
 end
