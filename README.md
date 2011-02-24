@@ -57,6 +57,10 @@ See HISTORY.md for the complete changelog.
 
 By Arjan van der Gaag ([avdgaag @ github][6]) based on the hard work of lots of others. See LICENSE for license details (same as Ruby).
 
+This gem includes contributions by:
+
+* Justin Hileman
+
 [1]: http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/
 [2]: http://github.com/hunter/typography-helper
 [3]: http://code.google.com/p/typogrify
