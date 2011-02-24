@@ -195,6 +195,25 @@ module Typogruby
     end
   end
 
+  # Converts whitespace or a non-breaking space surrounding dash entities into
+  # hairspace HTML entities.
+  #
+  # @example
+  #   hairsp('One &mdash; two')
+  #   # => 'One&#8202;&mdash;&#8202;two'
+  #   hairsp('One &#8211; two')
+  #   # => 'One&#8202;&#8211;&#8202;two'
+  #   hairsp('One &ndash;&nbsp;two')
+  #   # => 'One&#8202;&ndash;&#8202;two'
+  #
+  # @param [String] text input text
+  # @return [String] input text with hairspaces around dashes
+  def hairsp(text)
+    exclude_sensitive_tags(text) do |t|
+      t.gsub(/(?:\s+|&nbsp;)(&(?:mdash|#8212|#x2014);)(?:\s+|&nbsp;)/, '&#8202;\1&#8202;')
+    end
+  end
+
   # Converts special characters (excluding HTML tags) to HTML entities.
   #
   # @example

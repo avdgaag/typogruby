@@ -104,4 +104,15 @@ class TestTypogruby < Test::Unit::TestCase
       assert_equal test_string, improve(test_string)
     end
   end
+
+  def test_should_replace_whitespace_around_emdashes
+    assert_equal 'One&#8202;&mdash;&#8202;two', hairsp('One &mdash; two')
+    assert_equal 'One&#8202;&mdash;&#8202;two', hairsp('One &mdash;&nbsp;two')
+    assert_equal 'One&#8202;&#8212;&#8202;two', hairsp('One   &#8212;	two')
+    assert_equal 'One&#8202;&#x2014;&#8202;two', hairsp('One&nbsp;&#x2014;&nbsp;two')
+    assert_equal 'One &ndash; two', hairsp('One &ndash; two')
+    assert_equal 'One&mdash;two', hairsp('One&mdash;two')
+    assert_equal 'One &mdash;two', hairsp('One &mdash;two')
+    assert_equal 'One&mdash', hairsp('One&mdash')
+  end
 end
