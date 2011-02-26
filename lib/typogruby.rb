@@ -56,10 +56,10 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with ampersands wrapped
   def amp(text)
-    # $1 is an excluded HTML tag, $2 is the part before the caps and $3 is the amp match
+    # $1 is the part before the caps and $2 is the amp match
     exclude_sensitive_tags(text) do |t|
-      t.gsub(/<(code|pre).+?<\/\1>|(\s|&nbsp;)&(?:amp;|#38;)?(\s|&nbsp;)/) { |str|
-        $1 ? str : $2 + '<span class="amp">&amp;</span>' + $3
+      t.gsub(/(\s|&nbsp;)&(?:amp;|#38;)?(\s|&nbsp;)/) { |str|
+        $1 + '<span class="amp">&amp;</span>' + $2
       }.gsub(/(\w+)="(.*?)<span class="amp">&amp;<\/span>(.*?)"/, '\1="\2&amp;\3"')
     end
   end
@@ -147,17 +147,16 @@ module Typogruby
     exclude_sensitive_tags(text) do |t|
       # $1 and $2 are excluded HTML tags, $3 is the part before the caps and $4 is the caps match
       t.gsub(%r{
-          (?i:<(code|pre).+?</\1>)|     # Ignore the contents of code and pre elements
           (<[^/][^>]+?>)|               # Ignore any opening tag, so we don't mess up attribute values
           (\s|&nbsp;|^|'|"|>)           # Make sure our capture is preceded by whitespace or quotes
           ([A-Z\d][A-Z\d\.']{1,})       # Capture captial words, with optional dots or numbers in between
           (?!\w)                        # ...which must not be followed by a word character.
         }x) do |str|
-        excluded, tag, before, caps = $1, $2, $3, $4
+        tag, before, caps = $1, $2, $3
 
         # Do nothing with the contents if ignored tags, the inside of an opening HTML element
         # so we don't mess up attribute values, or if our capture is only digits.
-        if excluded || tag || caps =~ /^\d+\.?$/
+        if tag || caps =~ /^\d+\.?$/
           str
         elsif $3 =~ /^[\d\.]+$/
           before + caps
@@ -254,7 +253,7 @@ private
     end
   end
 
-  # Hackish text filter that will make sure our text filters leave 
+  # Hackish text filter that will make sure our text filters leave
   # sensitive tags alone without resorting to a full-blown HTML parser.
   #
   # Sensitive tags are tags with literal contents, which we do not
