@@ -104,4 +104,11 @@ class TestTypogruby < Test::Unit::TestCase
       assert_equal test_string, improve(test_string)
     end
   end
+
+  def test_should_not_forget_about_duplicate_sensitive_tags
+    %w{script pre code kbd math}.each do |tag_name|
+      test_string = "<#{tag_name}>this</#{tag_name}>==<#{tag_name}>this</#{tag_name}>"
+      assert_equal test_string, improve(test_string)
+    end
+  end
 end
