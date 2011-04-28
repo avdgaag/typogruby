@@ -277,7 +277,7 @@ private
       hash
     end
     yield(modified_text).gsub(/#{@exluded_sensitive_tags.keys.join('|')}/) do |h|
-      @exluded_sensitive_tags.delete(h)
+      @exluded_sensitive_tags[h]
     end
   end
 
