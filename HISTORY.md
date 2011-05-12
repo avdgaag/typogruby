@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.12
+
+* Fixed aruba deprecation warnings
+* Ensure duplicate sensitive tags are properly rendered (thanks Justin Hileman)
+* Removed obsolete tag-ignoring clauses from regexes
+
 ## 1.0.11
 
 * Excluded more typography-sensitive tags from filtering (thanks Justin Hileman)
