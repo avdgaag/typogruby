@@ -11,7 +11,7 @@ Feature: selective filtering
         """
 
     Scenario: using just one filter
-        When I run "typogruby -w input.html"
+        When I run `typogruby -w input.html`
         Then the output should contain exactly:
         """
         <p>"This IS a simple&nbsp;file!</p>
@@ -19,7 +19,7 @@ Feature: selective filtering
         And the exit status should be 0
 
     Scenario: using just several filters
-        When I run "typogruby -cw input.html"
+        When I run `typogruby -cw input.html`
         Then the output should contain exactly:
         """
         <p>"This <span class="caps">IS</span> a simple&nbsp;file!</p>
@@ -27,7 +27,7 @@ Feature: selective filtering
         And the exit status should be 0
 
     Scenario: excluding a single filter
-        When I run "typogruby --no-widows input.html"
+        When I run `typogruby --no-widows input.html`
         Then the output should contain exactly:
         """
         <p><span class="dquo">&#8220;</span>This <span class="caps">IS</span> a simple file!</p>
@@ -35,7 +35,7 @@ Feature: selective filtering
         And the exit status should be 0
 
     Scenario: excluding multiple filters
-        When I run "typogruby --no-widows --no-caps input.html"
+        When I run `typogruby --no-widows --no-caps input.html`
         Then the output should contain exactly:
         """
         <p><span class="dquo">&#8220;</span>This IS a simple file!</p>

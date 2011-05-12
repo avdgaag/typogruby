@@ -12,7 +12,7 @@ Feature: ignoring parts of a file
         </script>
         <p>"This IS a simple file!</p>
         """
-        When I run "typogruby input.html"
+        When I run `typogruby input.html`
         Then the output should contain exactly:
         """
         <script>

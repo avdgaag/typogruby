@@ -16,7 +16,7 @@ Feature: various inputs
 
     @wip
     Scenario: take input from STDIN
-        When I run "typogruby < input.html"
+        When I run `typogruby < input.html`
         Then the output should contain exactly:
         """
         <p><span class="dquo">&#8220;</span>This <span class="caps">IS</span> a simple&nbsp;file!</p>
@@ -24,7 +24,7 @@ Feature: various inputs
         And the exit status should be 0
 
     Scenario: multiple input files
-        When I run "typogruby input.html input2.html"
+        When I run `typogruby input.html input2.html`
         Then the output should contain exactly:
         """
         <p><span class="dquo">&#8220;</span>This <span class="caps">IS</span> a simple&nbsp;file!</p><p>This is another&nbsp;file</p>
