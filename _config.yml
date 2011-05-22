@@ -1,0 +1,5 @@
+markdown: kramdown
+pygments: true
+kramdown:
+  auto_ids: false
+
