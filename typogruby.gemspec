@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-require 'lib/version'
+require './lib/version'
 
 Gem::Specification.new do |s|
   # Metadata
