@@ -147,7 +147,7 @@ module Typogruby
   #   caps("L.A.P.D")
   #   # => '<span class="caps">L.A.P.D.</span>'
   #   caps("L. A. Paul")
-  #   # => 'L. A.&nbsp;Paul'
+  #   # => 'L. A. Paul'
   #
   # @param [String] text input text
   # @return [String] input text with caps wrapped
