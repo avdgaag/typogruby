@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>File: HISTORY</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -43,6 +43,44 @@
     
     <div id="content"><div id='filecontents'><h1>Changelog</h1>
 
+<h2>1.0.13</h2>
+
+<ul>
+<li>Be smart about periods in abbreviations. Capitalise LA, L.A. and L.A, but not L. or L. A. (by Brad Weslake)</li>
+</ul>
+
+
+<h2>1.0.12</h2>
+
+<ul>
+<li>Fixed aruba deprecation warnings</li>
+<li>Ensure duplicate sensitive tags are properly rendered (thanks Justin Hileman)</li>
+<li>Removed obsolete tag-ignoring clauses from regexes</li>
+</ul>
+
+
+<h2>1.0.11</h2>
+
+<ul>
+<li>Excluded more typography-sensitive tags from filtering (thanks Justin Hileman)</li>
+</ul>
+
+
+<h2>1.0.10</h2>
+
+<ul>
+<li>Decoupled jeweler, which is no longer a dependency.</li>
+<li>Various minor documentation issues and internal refactorings</li>
+</ul>
+
+
+<h2>1.0.9</h2>
+
+<ul>
+<li>Bugfix: ignore caps in HTML attribute values</li>
+</ul>
+
+
 <h2>1.0.8</h2>
 
 <ul>
@@ -52,6 +90,7 @@
 <li>better tests for the command-line tool with cucumber and aruba</li>
 </ul>
 
+
 <h2>1.0.7</h2>
 
 <ul>
@@ -60,11 +99,13 @@
 <li>Merged test helper and test case</li>
 </ul>
 
+
 <h2>1.0.6</h2>
 
 <ul>
 <li>Bugfix: ignore inline javascript</li>
 </ul>
+
 
 <h2>1.0.5</h2>
 
@@ -72,12 +113,14 @@
 <li>Manage gem dependencies using Bundler</li>
 </ul>
 
+
 <h2>1.0.4</h2>
 
 <ul>
 <li>Bugfix: no longer regard combination of digits and periods as caps.</li>
 <li>Bugfix: do not add consecutive non-breaking spaces to prevent widows</li>
 </ul>
+
 
 <h2>1.0.3</h2>
 
@@ -87,6 +130,7 @@
 <li>Improved documentation</li>
 </ul>
 
+
 <h2>1.0.2</h2>
 
 <ul>
@@ -94,16 +138,18 @@
 <li>Bugfix: caps no longer wraps consecutive numbers</li>
 </ul>
 
+
 <h2>1.0</h2>
 
 <ul>
 <li>First release</li>
-</ul></div></div>
+</ul>
+</div></div>
     
     <div id="footer">
-  Generated on Sat Nov  6 15:48:12 2010 by 
+  Generated on Fri Sep 23 09:02:28 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.1 (ruby-1.8.7).
+  0.6.8 (ruby-1.8.7).
 </div>
 
   </body>
