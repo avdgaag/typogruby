@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.13
+
+* Be smart about periods in abbreviations. Capitalise LA, L.A. and L.A, but not L. or L. A. (by Brad Weslake)
+
 ## 1.0.12
 
 * Fixed aruba deprecation warnings
