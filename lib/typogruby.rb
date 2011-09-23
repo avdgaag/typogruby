@@ -1,6 +1,8 @@
+# -*- encoding: utf-8 -*-
+
 require 'rubypants'
 require 'digest/md5'
-$KCODE = 'U'
+$KCODE = 'U' if RUBY_VERSION < '1.9.0'
 
 # A collection of simple helpers for improving web
 # typograhy. Based on TypographyHelper by Luke Hartman and Typogrify.
@@ -141,16 +143,22 @@ module Typogruby
   #   caps("<i>D.O.T.</i>HE34T<b>RFID</b>")
   #   # => '<i><span class="caps">D.O.T.</span></i><span class="caps">HE34T</span><b><span class="caps">RFID</span></b>'
   #
+  # @example Sequences of capitalised letters with spaces are not eligible, since they may be names.
+  #   caps("L.A.P.D")
+  #   # => '<span class="caps">L.A.P.D.</span>'
+  #   caps("L. A. Paul")
+  #   # => 'L. A. Paul'
+  #
   # @param [String] text input text
   # @return [String] input text with caps wrapped
   def caps(text)
     exclude_sensitive_tags(text) do |t|
       # $1 and $2 are excluded HTML tags, $3 is the part before the caps and $4 is the caps match
       t.gsub(%r{
-          (<[^/][^>]+?>)|               # Ignore any opening tag, so we don't mess up attribute values
-          (\s|&nbsp;|^|'|"|>)           # Make sure our capture is preceded by whitespace or quotes
-          ([A-Z\d][A-Z\d\.']{1,})       # Capture captial words, with optional dots or numbers in between
-          (?!\w)                        # ...which must not be followed by a word character.
+          (<[^/][^>]+?>)|                     # Ignore any opening tag, so we don't mess up attribute values
+          (\s|&nbsp;|^|'|"|>)                 # Make sure our capture is preceded by whitespace or quotes
+          ([A-Z\d]([\.']?[A-Z\d][\.']?){1,})  # Capture capital words, with optional dots or numbers in between
+          (?!\w)                              # ...which must not be followed by a word character.
         }x) do |str|
         tag, before, caps = $1, $2, $3
 
