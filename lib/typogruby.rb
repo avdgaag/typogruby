@@ -155,10 +155,10 @@ module Typogruby
     exclude_sensitive_tags(text) do |t|
       # $1 and $2 are excluded HTML tags, $3 is the part before the caps and $4 is the caps match
       t.gsub(%r{
-          (<[^/][^>]+?>)|                     # Ignore any opening tag, so we don't mess up attribute values
-          (\s|&nbsp;|^|'|"|>)                 # Make sure our capture is preceded by whitespace or quotes
-          ([A-Z\d]([\.']?[A-Z\d][\.']?){1,})  # Capture capital words, with optional dots or numbers in between
-          (?!\w)                              # ...which must not be followed by a word character.
+          (<[^/][^>]*?>)|                      # Ignore any opening tag, so we don't mess up attribute values
+          (\s|&nbsp;|^|'|"|>|)                 # Make sure our capture is preceded by whitespace or quotes
+          ([A-Z\d](?:[\.']?[A-Z\d][\.']?){1,}) # Capture capital words, with optional dots or numbers in between
+          (?!\w)                               # ...which must not be followed by a word character.
         }x) do |str|
         tag, before, caps = $1, $2, $3
 

@@ -27,6 +27,8 @@ class TestTypogruby < Test::Unit::TestCase
 
   def test_should_replace_caps
     assert_equal 'A message from <span class="caps">KU</span>', caps("A message from KU")
+    assert_equal 'Replace text <a href="."><span class="caps">IN</span></a> tags', caps('Replace text <a href=".">IN</a> tags')
+    assert_equal 'Replace text <i><span class="caps">IN</span></i> tags', caps('Replace text <i>IN</i> tags')
   end
 
   def test_should_ignore_special_case_caps
