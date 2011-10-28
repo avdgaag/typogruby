@@ -14,14 +14,18 @@ First, install the Ruby gem:
 
 Then require the library to get started:
 
-    require 'typogruby'
-    Typogruby.improve('Hello, world!')
+```ruby
+require 'typogruby'
+Typogruby.improve('Hello, world!')
+```
 
 Or, you can include the library in a helper or something:
 
-    require 'typogruby'
-    include Typogruby
-    improve('Hello, world!')
+```ruby
+require 'typogruby'
+include Typogruby
+improve('Hello, world!')
+```
 
 See the [full API documentation][4] for more information. You could also use [this Textmate Bundle][5].
 
