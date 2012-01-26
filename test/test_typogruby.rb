@@ -1,10 +1,6 @@
 # -*- encoding: utf-8 -*-
-require 'rubygems'
-require 'bundler'
 require 'test/unit'
 require 'typogruby'
-Bundler.setup
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 class TestTypogruby < Test::Unit::TestCase
   include Typogruby
