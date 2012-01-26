@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.14
+
+* Bugfix: ignore multi-line HTML attributes in widont filter
+
 ## 1.0.13
 
 * Be smart about periods in abbreviations. Capitalise LA, L.A. and L.A, but not L. or L. A. (by Brad Weslake)
