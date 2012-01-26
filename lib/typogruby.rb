@@ -112,13 +112,14 @@ module Typogruby
   def widont(text)
     exclude_sensitive_tags(text) do |t|
       t.gsub(%r{
+        (<[^/][^>]*?>)|                                 # Ignore any opening tag, so we don't mess up attribute values
         ((?:</?(?:a|em|span|strong|i|b)[^>]*>)|[^<>\s]) # must be proceeded by an approved inline opening or closing tag or a nontag/nonspace
         \s+                                             # the space to replace
         (([^<>\s]+)                                     # must be flollowed by non-tag non-space characters
         \s*                                             # optional white space!
         (</(a|em|span|strong|i|b)>\s*)*                 # optional closing inline tags with optional white space after each
         ((</(p|h[1-6]|li|dt|dd)>)|$))                   # end with a closing p, h1-6, li or the end of the string
-      }x) { |match| $1 + (match.include?('&nbsp;') ? ' ' : '&nbsp;') + $2 } # Make sure to not add another nbsp before one already there
+      }xm) { |match| $1 ? match : $2 + (match.include?('&nbsp;') ? ' ' : '&nbsp;') + $3 } # Make sure to not add another nbsp before one already there
     end
   end
 

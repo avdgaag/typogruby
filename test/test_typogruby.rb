@@ -96,6 +96,11 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<div><p>But divs with paragraphs&nbsp;do!</p></div>', widont('<div><p>But divs with paragraphs do!</p></div>')
   end
 
+  def test_should_ignore_attributes_across_mutliple_lines_when_preventing_widows
+    assert_equal %Q{<div id="aniver" style="\nbackground-image:url('/static/colorfulbackground.png');\nbackground-repeat:no-repeat;\ntext-align:center;\nmargin:0;\npadding:0;\nbackground-size: 100% 100%;">},
+      widont(%Q{<div id="aniver" style="\nbackground-image:url('/static/colorfulbackground.png');\nbackground-repeat:no-repeat;\ntext-align:center;\nmargin:0;\npadding:0;\nbackground-size: 100% 100%;">})
+  end
+
   def test_should_convert_entities
     assert_equal "Vari&euml;ren&hellip;", entities('Variëren…')
     assert_equal "<p>Ol&eacute;</p>", entities('<p>Olé</p>')
