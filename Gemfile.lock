@@ -49,7 +49,6 @@ DEPENDENCIES
   bluecloth
   cucumber
   rake
-  rcov
   rspec
   typogruby!
   yard
