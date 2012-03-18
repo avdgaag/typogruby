@@ -80,19 +80,11 @@ else
 end
 
 begin
-  # Apply every filter to our input text
   output = operations_todo.inject(ARGF.read) { |t, o| Typogruby.send(o, t) }
-
-# End the program nicely when the user interrupt with ctrl-c
 rescue Interrupt
-  $stderr.puts "Interrupted by user."
-  exit 1
-
-# Inform the user of any errors that have occured
+  abort "Interrupted by user."
 rescue Exception => e
-  $stderr.puts "Error processing input:"
-  $stderr.puts e.message
-  exit 1
+  abort "Error processing input: #{e.message}"
 end
 
 # Either use the output_filename to save the output to a file on disk,
@@ -103,9 +95,7 @@ if output_filename
       f.print output
     end
   rescue Exception => e
-    $stdout.print "A problem occured when trying to write to file #{output_filename}:"
-    $stdout.print e.message
-    exit 1
+    abort "A problem occured when trying to write to file #{output_filename}: #{e.message}"
   end
 else
   $stdout.print output
