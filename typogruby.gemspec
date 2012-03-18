@@ -28,12 +28,11 @@ Gem::Specification.new do |s|
   ]
 
   # Dependencies
-  s.add_runtime_dependency('rubypants',     ['>= 0'])
-  s.add_development_dependency('yard',      ['>= 0'])
-  s.add_development_dependency('rake',      ['>= 0'])
-  s.add_development_dependency('aruba',     ['>= 0'])
-  s.add_development_dependency('cucumber',  ['>= 0'])
-  s.add_development_dependency('rspec',     ['>= 0'])
-  s.add_development_dependency('bluecloth', ['>= 0'])
+  s.add_runtime_dependency 'rubypants'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'aruba'
+  s.add_development_dependency 'cucumber'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'bluecloth'
 end
 

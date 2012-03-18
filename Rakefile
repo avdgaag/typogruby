@@ -69,12 +69,14 @@ namespace :version do
   end
 end
 
-require 'yard'
-YARD::Rake::YardocTask.new do |t|
-  t.options = [
-    '--files', 'LICENSE',
-    '--files', 'HISTORY.md',
-    '--title', 'Typogruby API documentation'
-  ]
+begin
+  require 'yard'
+  YARD::Rake::YardocTask.new do |t|
+    t.options = [
+      '--files', 'LICENSE',
+      '--files', 'HISTORY.md',
+      '--title', 'Typogruby API documentation'
+    ]
+  end
+rescue LoadError
 end
-
