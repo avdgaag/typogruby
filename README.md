@@ -66,6 +66,7 @@ By Arjan van der Gaag ([avdgaag @ github][6]) based on the hard work of lots of 
 This gem includes contributions by:
 
 * Justin Hileman
+* Peter Aronoff
 
 [1]: http://jeffcroft.com/blog/2007/may/29/typogrify-easily-produce-web-typography-doesnt-suc/
 [2]: http://github.com/hunter/typography-helper

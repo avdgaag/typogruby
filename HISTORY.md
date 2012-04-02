@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.15
+
+* Added head to list of ignored elements (thanks Peter Aronoff)
+
 ## 1.0.14
 
 * Bugfix: ignore multi-line HTML attributes in widont filter
