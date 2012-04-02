@@ -35,6 +35,7 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal 'A message from <span class="caps">2KU2</span> with digits', caps("A message from 2KU2 with digits")
     assert_equal 'Dotted caps followed by spaces should never include them in the wrap <span class="caps">D.O.T.</span>   like so.', caps("Dotted caps followed by spaces should never include them in the wrap D.O.T.   like so.")
     assert_equal 'Caps in attributes (<span title="Example CAPS">example</span>) should be ignored', caps('Caps in attributes (<span title="Example CAPS">example</span>) should be ignored')
+    assert_equal '<head><title>CAPS Example</title></head>', caps('<head><title>CAPS Example</title></head>')
   end
 
   def test_should_not_break_caps_with_apostrophes
