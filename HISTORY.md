@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.16
+
+* Added textarea to list of ignored elements (thanks Juan Antonio Navarro Pérez)
+* Added Haml filter
+
 ## 1.0.15
 
 * Added head to list of ignored elements (thanks Peter Aronoff)
