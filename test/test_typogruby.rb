@@ -44,7 +44,9 @@ class TestTypogruby < Test::Unit::TestCase
   end
 
   def test_should_not_break_caps_with_ampersands
-    assert_equal '<span class="caps">AT&amp;T</span>', caps("AT&T")
+    assert_equal '<span class="caps">AT&T</span>', caps("AT&T")
+    assert_equal '<span class="caps">AT&amp;T</span>', caps("AT&amp;T")
+    assert_equal '<span class="caps">AT&#38;T</span>', caps("AT&#38;T")
   end
 
   def test_should_replace_quotes
