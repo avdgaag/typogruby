@@ -43,6 +43,10 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<i><span class="caps">D.O.T.</span></i><span class="caps">HE34T</span><b><span class="caps">RFID</span></b>', caps("<i>D.O.T.</i>HE34T<b>RFID</b>")
   end
 
+  def test_should_not_break_caps_with_ampersands
+    assert_equal '<span class="caps">AT&amp;T</span>', caps("AT&T")
+  end
+
   def test_should_replace_quotes
     assert_equal '<span class="dquo">"</span>With primes"', initial_quotes('"With primes"')
     assert_equal '<span class="quo">\'</span>With single primes\'', initial_quotes("'With single primes'")
