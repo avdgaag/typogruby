@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    typogruby (1.0.16)
+    typogruby (1.0.17)
       rubypants
 
 GEM

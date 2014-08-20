@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.17
+
+* Allow ampersands in capitalised words (thanks Paul Robert Lloyd)
+
 ## 1.0.16
 
 * Added textarea to list of ignored elements (thanks Juan Antonio Navarro Pérez)
