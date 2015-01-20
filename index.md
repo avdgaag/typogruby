@@ -65,7 +65,7 @@ puts Typogruby.improve('Hello, world!')
 ## Included filters
 
 * Rubypants is used for nice special characters, such as quotes and dashes
-* A port of [Shaun Inman’s widon’t][widont] is used to prevent widows (using a `&amp;nbsp;` to prevent a single word on a new line).
+* A port of [Shaun Inman’s widon’t][widont] is used to prevent widows (using an `&nbsp;` to prevent a single word on a new line).
 * All consecutive capital letters are wrapped in `span.caps`
 * All quotes at the start of a line are wrapped in `span.dquo`
 * All ampersands (&amp;) are wrapped in `span.amp`
