@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-require 'test/unit'
+require 'minitest/autorun'
 require File.expand_path('../../lib/typogruby', __FILE__)
 
-class TestTypogruby < Test::Unit::TestCase
+class TypogrubyTest < Minitest::Test
   include Typogruby
 
   def test_should_replace_amps

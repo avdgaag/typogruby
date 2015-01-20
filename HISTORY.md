@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.18
+
+* Added `<title>` to list of excluded tags
+* Switched to Minitest for unit testing
+
 ## 1.0.17
 
 * Allow ampersands in capitalised words (thanks Paul Robert Lloyd)
