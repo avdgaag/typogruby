@@ -295,7 +295,7 @@ private
   end
 
   # Array of all the senstive tags that should be ignored by all the text filters.
-  EXCLUDED_TAGS  = %w{head pre code kbd math script textarea}
+  EXCLUDED_TAGS  = %w{head pre code kbd math script textarea title}
 
   extend self
 end

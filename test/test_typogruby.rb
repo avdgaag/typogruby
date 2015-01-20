@@ -92,9 +92,14 @@ class TestTypogruby < Test::Unit::TestCase
     assert_equal '<h1><a href="#"></a></h1>', widont('<h1><a href="#"></a></h1>')
   end
 
+  def test_should_ignore_caps_in_special_tags
+    assert_equal '<title>I like JSON</title>', caps('<title>I like JSON</title>')
+  end
+
   def test_should_ignore_widows_in_special_tags
     assert_equal '<div>Divs get no love!</div>', widont('<div>Divs get no love!</div>')
     assert_equal '<pre>Neither do PREs</pre>', widont('<pre>Neither do PREs</pre>')
+    assert_equal '<title>or titles</title>', widont('<title>or titles</title>')
     assert_equal '<textarea>nor text in textarea</textarea>', widont('<textarea>nor text in textarea</textarea>')
     assert_equal "<script>\nreturn window;\n</script>", widont("<script>\nreturn window;\n</script>")
     assert_equal '<div><p>But divs with paragraphs&nbsp;do!</p></div>', widont('<div><p>But divs with paragraphs do!</p></div>')
