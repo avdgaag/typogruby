@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 require 'test/unit'
-require 'typogruby'
+require File.expand_path('../../lib/typogruby', __FILE__)
 
 class TestTypogruby < Test::Unit::TestCase
   include Typogruby
