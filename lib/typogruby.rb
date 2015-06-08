@@ -238,9 +238,41 @@ module Typogruby
   # main function to do all the functions from the method.
   #
   # @param [String] text input text
-  # @return [String] input text with all filters applied
-  def improve(text)
-    initial_quotes(caps(smartypants(widont(amp(text)))))
+  # @param [Hash<Boolean>] options choose which filters to be disabled
+  # @return [String] input text with selected filters applied
+  def improve(text, options = {})
+
+    if options.empty?
+      initial_quotes(caps(smartypants(widont(amp(text)))))
+    else
+      improvedText = text
+
+      unless options[:no_amps] == true
+        improvedText = amp improvedText
+      end
+
+      unless options[:no_widows] == true
+        improvedText = widont improvedText
+      end
+
+      unless options[:no_smartypants] == true
+        improvedText = smartypants improvedText
+      end
+
+      unless options[:no_caps] == true
+        improvedText = caps improvedText
+      end
+
+      unless options[:no_quotes] == true
+        improvedText = smartypants improvedText
+      end
+
+      unless options[:no_quotes] == true
+        improvedText = initial_quotes improvedText
+      end
+
+      improvedText
+    end
   end
 
 private
