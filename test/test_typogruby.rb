@@ -67,7 +67,7 @@ class TypogrubyTest < Minitest::Test
   end
 
   def test_should_apply_all_filters
-    assert_equal '<h2><span class="dquo">&#8220;</span>Jayhawks&#8221; <span class="amp">&amp;</span> <span class="caps">KU</span> fans act extremely&nbsp;obnoxiously</h2>', improve('<h2>"Jayhawks" & KU fans act extremely obnoxiously</h2>')
+    assert_equal '<h2><span class="dquo">&#8220;</span>J&auml;yhawks&#8221; <span class="amp">&amp;</span> <span class="caps">KU</span> fans act extremely&nbsp;obnoxiously</h2>', improve('<h2>"Jäyhawks" & KU fans act extremely obnoxiously</h2>')
   end
 
   def test_should_prevent_widows

@@ -216,23 +216,25 @@ module Typogruby
   # @return [String] input text with all special characters converted to
   #   HTML entities.
   def entities(text)
-    o = ''
-    text.scan(/(?x)
+    exclude_sensitive_tags(text) do |t|
+      o = ''
+      t.scan(/(?x)
 
-        ( <\?(?:[^?]*|\?(?!>))*\?>
-        | <!-- (?m:.*?) -->
-        | <\/? (?i:a|abbr|acronym|address|applet|area|b|base|basefont|bdo|big|blockquote|body|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|fieldset|font|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|hr|html|i|iframe|img|input|ins|isindex|kbd|label|legend|li|link|map|menu|meta|noframes|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|ul|var)\b
-            (?:[^>"']|"[^"]*"|'[^']*')*
-          >
-        | &(?:[a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+);
-        )
-        |([^<&]+|[<&])
+          ( <\?(?:[^?]*|\?(?!>))*\?>
+          | <!-- (?m:.*?) -->
+          | <\/? (?i:a|abbr|acronym|address|applet|area|b|base|basefont|bdo|big|blockquote|body|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|fieldset|font|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|hr|html|i|iframe|img|input|ins|isindex|kbd|label|legend|li|link|map|menu|meta|noframes|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|ul|var)\b
+              (?:[^>"']|"[^"]*"|'[^']*')*
+            >
+          | &(?:[a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+);
+          )
+          |([^<&]+|[<&])
 
-      /x) do |tag, text|
-      o << tag.to_s
-      o << encode(text.to_s)
+        /x) do |tag, t|
+        o << tag.to_s
+        o << encode(t.to_s)
+      end
+      o
     end
-    o
   end
 
   # main function to do all the functions from the method.
@@ -240,7 +242,7 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with all filters applied
   def improve(text)
-    initial_quotes(caps(smartypants(widont(amp(text)))))
+    initial_quotes(entities(caps(smartypants(widont(amp(text))))))
   end
 
 private
