@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'typogruby'
 require 'optparse'
 
-operations = [:smartypants, :initial_quotes, :amp, :widont, :caps]
+operations = [:smartypants, :entities, :initial_quotes, :amp, :widont, :caps]
 explicit_on = []
 explicit_off = []
 output_filename = nil
