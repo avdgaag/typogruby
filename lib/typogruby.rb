@@ -207,6 +207,32 @@ module Typogruby
     end
   end
 
+  # converts an — (em dash) surrounded by optional whitespace or a non-breaking
+  # space to the HTML entity and surrounds it in a span with a styled class.
+  #
+  # Copyright (c) 2015 Myles Braithwaite
+  # Pulled from https://github.com/myles/jekyll-typogrify@edfebe9
+  # Then modified to improve.
+  #
+  # @example Wraps and converts em dashes to HTML entities
+  #   emdash('<p>This first—then that</p>')
+  #   # => '<p>This first<span class="emdash">&mdash;</span>then that</p>'
+  #
+  # @example Wraps em dash HTML entities
+  #   emdash('<p>This first&mdash;then that</p>')
+  #   # => '<p>This first<span class="emdash">&mdash;</span>then that</p>'
+  #
+  # @param [String] text input text
+  # @return [String] input text with em dashes wrapped
+  def emdash(text)
+    exclude_sensitive_tags(text) do |t|
+        t
+          .gsub(/(\w|\s|&nbsp;)(?:—|&mdash;|&#8212;|&#x2014;)(\w|\s|&nbsp;)/) { |str| $1 + '<span class="emdash">&mdash;</span>' + $2}
+          .gsub(/(\w+)="(.*?)<span class="emdash">&mdash;<\/span>(.*?)"/, '\1="\2&mdash;\3"')
+    end
+  end
+
+
   # Converts special characters (excluding HTML tags) to HTML entities.
   #
   # @example
@@ -242,7 +268,7 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with all filters applied
   def improve(text)
-    initial_quotes(entities(caps(smartypants(widont(amp(text))))))
+    initial_quotes(entities(emdash(caps(smartypants(widont(amp(text)))))))
   end
 
 private
