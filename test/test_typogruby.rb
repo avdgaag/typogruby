@@ -67,7 +67,7 @@ class TypogrubyTest < Minitest::Test
   end
 
   def test_should_apply_all_filters
-    assert_equal '<h2><span class="dquo">&#8220;</span>J&auml;yhawks&#8221; <span class="amp">&amp;</span> <span class="caps">KU</span> fans act extremely&nbsp;obnoxiously</h2>', improve('<h2>"Jäyhawks" & KU fans act extremely obnoxiously</h2>')
+    assert_equal '<h2><span class="dquo">&#8220;</span>J&auml;yhawks&#8221; <span class="amp">&amp;</span> <span class="caps">KU</span> fans<span class="emdash">&mdash;</span>act extremely&nbsp;obnoxiously</h2>', improve('<h2>"Jäyhawks" & KU fans—act extremely obnoxiously</h2>')
   end
 
   def test_should_prevent_widows
@@ -90,6 +90,23 @@ class TypogrubyTest < Minitest::Test
 
   def test_should_not_error_on_empty_html
     assert_equal '<h1><a href="#"></a></h1>', widont('<h1><a href="#"></a></h1>')
+  end
+
+  def test_should_replace_emdashes
+    assert_equal 'this<span class="emdash">—</span>that', emdash('this—that')
+    assert_equal 'this <span class="emdash">—</span> that', emdash('this — that')
+    assert_equal 'this <span class="emdash">&mdash;</span> that', emdash('this &mdash; that')
+    assert_equal 'this <span class="emdash">&#8212;</span> that', emdash('this &#8212; that')
+    assert_equal 'this <span class="emdash">&#x2014;</span> that', emdash('this &#x2014; that')
+  end
+
+  def test_should_avoid_double_replacing_emdashes
+    assert_equal 'this<span class="emdash">&mdash;</span>that', emdash('this<span class="emdash">&mdash;</span>that')
+  end
+
+  def test_should_ignore_emdashes_in_special_tags
+    assert_equal '<code>this—that</code>', caps('<code>this—that</code>')
+    assert_equal '<title>this—that</title>', caps('<title>this—that</title>')
   end
 
   def test_should_ignore_caps_in_special_tags

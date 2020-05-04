@@ -207,6 +207,32 @@ module Typogruby
     end
   end
 
+  # converts an — (em dash) surrounded by optional whitespace or a non-breaking
+  # space to the HTML entity and surrounds it in a span with a styled class.
+  #
+  # Copyright (c) 2015 Myles Braithwaite
+  # Pulled from https://github.com/myles/jekyll-typogrify@edfebe9
+  # Then modified to improve.
+  #
+  # @example Wraps and converts em dashes to HTML entities
+  #   emdash('<p>This first—then that</p>')
+  #   # => '<p>This first<span class="emdash">&mdash;</span>then that</p>'
+  #
+  # @example Wraps em dash HTML entities
+  #   emdash('<p>This first&mdash;then that</p>')
+  #   # => '<p>This first<span class="emdash">&mdash;</span>then that</p>'
+  #
+  # @param [String] text input text
+  # @return [String] input text with em dashes wrapped
+  def emdash(text)
+    exclude_sensitive_tags(text) do |t|
+        t
+          .gsub(/(\w|\s|&nbsp;)(—|&mdash;|&#8212;|&#x2014;)(\w|\s|&nbsp;)/) { |str| %(#{$1}<span class="emdash">#{$2}</span>#{$3}) }
+          .gsub(/(\w+)="(.*?)<span class="emdash">&mdash;<\/span>(.*?)"/, '\1="\2&mdash;\3"')
+    end
+  end
+
+
   # Converts special characters (excluding HTML tags) to HTML entities.
   #
   # @example
@@ -223,7 +249,7 @@ module Typogruby
           ( <\?(?:[^?]*|\?(?!>))*\?>
           | <!-- (?m:.*?) -->
           | <\/? (?i:a|abbr|acronym|address|applet|area|b|base|basefont|bdo|big|blockquote|body|br|button|caption|center|cite|code|col|colgroup|dd|del|dfn|dir|div|dl|dt|em|fieldset|font|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|hr|html|i|iframe|img|input|ins|isindex|kbd|label|legend|li|link|map|menu|meta|noframes|noscript|object|ol|optgroup|option|p|param|pre|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|ul|var)\b
-              (?:[^>"']|"[^"]*"|'[^']*')*
+              (?:[^>\"\']|"[^\"]*"|'[^\']*')*
             >
           | &(?:[a-zA-Z0-9]+|\#[0-9]+|\#x[0-9a-fA-F]+);
           )
@@ -242,7 +268,7 @@ module Typogruby
   # @param [String] text input text
   # @return [String] input text with all filters applied
   def improve(text)
-    initial_quotes(entities(caps(smartypants(widont(amp(text))))))
+    initial_quotes(entities(emdash(caps(smartypants(widont(amp(text)))))))
   end
 
 private
@@ -286,7 +312,7 @@ private
   # @return [String] input with sensitive tags restored
   def exclude_sensitive_tags(text)
     @exluded_sensitive_tags = {}
-    modified_text = text.gsub(/<(#{EXCLUDED_TAGS .join('|')})[^>]*>.*?<\/\1>/mi) do |script|
+    modified_text = text.gsub(/<(#{EXCLUDED_TAGS.join('|')})[^>]*>.*?<\/\1>/mi) do |script|
       hash = Digest::MD5.hexdigest(script)
       @exluded_sensitive_tags[hash] = script
       hash
