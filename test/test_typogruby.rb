@@ -93,11 +93,11 @@ class TypogrubyTest < Minitest::Test
   end
 
   def test_should_replace_emdashes
-    assert_equal 'this<span class="emdash">&mdash;</span>that', emdash('this—that')
-    assert_equal 'this <span class="emdash">&mdash;</span> that', emdash('this — that')
+    assert_equal 'this<span class="emdash">—</span>that', emdash('this—that')
+    assert_equal 'this <span class="emdash">—</span> that', emdash('this — that')
     assert_equal 'this <span class="emdash">&mdash;</span> that', emdash('this &mdash; that')
-    assert_equal 'this <span class="emdash">&mdash;</span> that', emdash('this &#8212; that')
-    assert_equal 'this <span class="emdash">&mdash;</span> that', emdash('this &#x2014; that')
+    assert_equal 'this <span class="emdash">&#8212;</span> that', emdash('this &#8212; that')
+    assert_equal 'this <span class="emdash">&#x2014;</span> that', emdash('this &#x2014; that')
   end
 
   def test_should_avoid_double_replacing_emdashes

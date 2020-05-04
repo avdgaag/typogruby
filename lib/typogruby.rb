@@ -227,7 +227,7 @@ module Typogruby
   def emdash(text)
     exclude_sensitive_tags(text) do |t|
         t
-          .gsub(/(\w|\s|&nbsp;)(?:—|&mdash;|&#8212;|&#x2014;)(\w|\s|&nbsp;)/) { |str| $1 + '<span class="emdash">&mdash;</span>' + $2}
+          .gsub(/(\w|\s|&nbsp;)(—|&mdash;|&#8212;|&#x2014;)(\w|\s|&nbsp;)/) { |str| %(#{$1}<span class="emdash">#{$2}</span>#{$3}) }
           .gsub(/(\w+)="(.*?)<span class="emdash">&mdash;<\/span>(.*?)"/, '\1="\2&mdash;\3"')
     end
   end
